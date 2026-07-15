@@ -1,0 +1,667 @@
+/* --- 2026년 SK AX 엔터프라이즈 브랜드 테마 스타일시트 --- */
+
+/* --- 1. 구글 웹폰트 불러오기 및 영문/한글 최적화 (프리텐다드 대체) --- */
+/* - 영문 텍스트는 Inter, 국문 텍스트는 Noto Sans KR로 믹스해 프리텐다드 효과 적용 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- 2. 기본 문서 환경 및 정렬 (CSS 기반 화면 중앙 정렬) --- */
+body {
+  font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f8fafc; /* - 눈이 편안한 연한 회색 슬레이트 배경 */
+  color: #334155;            /* - 대기업 인트라넷용 다크 차콜 글자색 */
+  line-height: 1.75;
+  letter-spacing: -0.015em;
+  font-size: 16px;
+  word-break: keep-all;
+  
+  /* - 모든 페이지의 가로폭을 1000px로 완전 단일화하여 페이지 이동 시 상단 로고의 위치 어긋남(Shifting) 원천 해결 */
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 80px; /* - 좌우 마진(여백)을 대폭 넓혀 대화면에서도 조밀하지 않고 시원한 레이아웃 연출 */
+}
+
+/* --- 3. 공통 콘텐츠 레이아웃 카드 구성 --- */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px; /* - 헤더 영역 하단 마진을 40px에서 20px로 조여 과도한 여백 제거 */
+}
+
+main {
+  background-color: #ffffff;
+  padding: 24px 32px; /* - 상하 패딩을 40px에서 24px로 좁혀 불필요한 세로 공간 단축 */
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03);
+  margin-bottom: 24px;
+}
+
+aside {
+  background-color: #ffffff;
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid #cbd5e1; /* - 조금 더 선명한 슬레이트 경계선 */
+  margin-bottom: 24px;
+  font-size: 14.5px;
+  box-shadow: 0 2px 12px -1px rgba(15, 23, 42, 0.02);
+}
+
+aside ul {
+  list-style: none; /* - 기본 볼릿 원형 제거 */
+  padding-left: 0;
+  margin-top: 16px;
+}
+
+aside li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+aside li:last-child {
+  margin-bottom: 0;
+}
+
+/* - SK AX 브랜드 테마 시그니처 사각형 볼릿 */
+aside li::before {
+  content: '■'; 
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: #E60024; /* - SK Red 색상의 미니 사각 볼릿 */
+  font-size: 8px;
+}
+
+footer {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 32px 0;
+}
+
+/* --- 4. 제목 스타일링 (SK 시그니처 그라데이션 포인트) --- */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.brand-logo .brand-text-ax,
+.brand-logo .brand-text-skala {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  background: linear-gradient(90deg, #E60024, #FF5C00); /* - 모든 로고 텍스트에 SK 브랜드 아이덴티티 그라데이션 적용 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* - 로고 이미지가 글로벌 이미지 스타일(테두리, 라운딩, 그림자)을 상속받지 않도록 차단 */
+.brand-logo img {
+  width: 24px !important;
+  height: 24px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+
+/* - 뒤로가기 링크 스타일 (B2B SaaS 브레드크럼 스타일) */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: -8px;
+  margin-bottom: 24px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.back-link:hover {
+  color: #E60024; /* - 호버 시 SK Red로 강조 */
+  transform: translateX(-3px); /* - 왼쪽으로 가볍게 밀리는 동적 피드백 */
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #E60024, #F9A100); /* - 대제목 텍스트 자체를 SK 그라데이션 컬러로 변경 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  letter-spacing: -0.025em;
+  position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 12px; /* - H1 하단 기본 마진을 28px에서 12px로 축소 */
+}
+
+/* - 헤더에 제목만 단독으로 존재할 경우(바로가기 메뉴가 없는 경우) 쓸데없는 하단 마진 제거 */
+header h1:last-child {
+  margin-bottom: 0;
+}
+
+/* - SK 메인 브랜드 레드 & 오렌지 듀오톤 가로선 포인트 */
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 64px;
+  height: 4px;
+  background: linear-gradient(90deg, #E60024, #F9A100);
+  border-radius: 2px;
+}
+
+h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.015em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-left: 16px;
+  position: relative;
+}
+
+/* - 각 박스 컨테이너(main, nav 등) 안의 첫 번째 h2는 상단 여백을 없애 균형 유지 */
+h2:first-of-type {
+  margin-top: 0 !important;
+}
+
+/* - 세로형 브랜드 그라데이션 바 */
+h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  background: linear-gradient(180deg, #E60024, #F9A100);
+  border-radius: 2px;
+}
+
+/* - 메인 화면의 환영 인사 텍스트를 그라데이션 텍스트로 렌더링 */
+.container:has(> nav) main h2:first-of-type {
+  background: linear-gradient(90deg, #E60024, #F9A100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+/* --- 5. 본문 서식 및 강조 요소 꾸미기 --- */
+p {
+  margin-bottom: 18px;
+  color: #475569;
+}
+
+strong {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+mark {
+  background-color: #fef3c7; /* - 중요 키워드 백그라운드 마킹 */
+  color: #b45309;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+del {
+  color: #94a3b8;
+  text-decoration: line-through;
+}
+
+ins {
+  color: #0d9488; /* - 취소선 및 신규 추가 단어 강조 */
+  text-decoration: none;
+  font-weight: 500;
+  background-color: #f0fdfa;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+code {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  border: 1px solid #e2e8f0;
+}
+
+/* --- 6. 링크 및 메뉴 네비게이션 (SK 레드 호버 인터랙션) --- */
+a {
+  color: #475569;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* - 마우스 호버 시 쫀득하고 부드러운 화면 전환 효과 */
+}
+
+a:hover {
+  color: #E60024; /* - 마우스 올렸을 때 SK 브랜드 레드 컬러 변경 */
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* - 네비게이션용 라운드 박스 설정 */
+nav {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #cbd5e1; /* - 조금 더 선명한 테두리로 강조 */
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.015);
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 10px; /* - 메뉴 항목 사이 간격 설정 */
+}
+
+nav li:last-child {
+  margin-bottom: 0;
+}
+
+nav a {
+  display: block;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 14.5px;
+  color: #475569;
+  font-weight: 500;
+  background-color: #f8fafc; /* - 배경색을 더 연하고 투명감 있는 회색(#f8fafc)으로 낮추어 한결 가볍게 표현 */
+  border-left: 3px solid #cbd5e1 !important; /* - 왼쪽 세로축에 은은한 그레이 가이드 바 장착 */
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  padding-left: 16px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* - 메뉴 항목 위로 마우스 올리면 SK 그라데이션 틴트 배경과 왼쪽 라인 슬라이딩 */
+nav a:hover {
+  background-color: #fff1f2; /* - 마우스 호버 시 은은한 SK Red 틴트 소프트 핑크 적용 */
+  color: #E60024;            /* - 텍스트 SK Red 전환 */
+  border-left-color: #E60024 !important; /* - 호버 시 왼쪽 가이드 바를 선명한 SK Red로 변경 */
+  padding-left: 22px;        /* - 마이크로 슬라이딩 우측 이동 피드백 */
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* - 헤더 영역 내부의 페이지 내 북마크 바로가기용 네비게이션 디자인 */
+header nav {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  margin-top: 4px; /* - 제목 밑줄 바로 아래에 조화롭게 배치되도록 여백 축소 */
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+header nav a {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: rgba(15, 23, 42, 0.035); /* - 완전 불투명 회색 대신 반투명 소프트 그레이를 채택해 초경량 칩 완성 */
+  border: none !important;    /* - 테두리선 완벽 제거 */
+  border-radius: 6px;        /* - 타원형 캡슐 대신 트렌디한 6px 둥근 사각형 코너 적용 */
+  font-size: 13px;
+  color: #475569;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+header nav a:hover {
+  background-color: #E60024; /* - 호버 시 SK Red로 가득 채우는 강렬한 시각 피드백 */
+  color: #ffffff;            /* - 흰색 글자 전환 */
+  border-color: #E60024;
+  box-shadow: 0 4px 12px rgba(230, 0, 36, 0.2); /* - 버튼 색상과 어우러지는 레드 글로우 효과 */
+  transform: translateY(-1.5px); /* - 공중으로 도약하는 역동적인 높이 변화 */
+  text-decoration: none;
+}
+
+/* --- 7. 리스트 서식 스타일링 (상세 설명 상자 포함) --- */
+ul, ol {
+  margin-bottom: 28px;
+  padding-left: 28px;
+}
+
+li {
+  margin-bottom: 8px;
+  color: #475569;
+}
+
+li > ul, li > ol {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+dl {
+  background-color: #f8fafc;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+dt {
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 14px;
+}
+
+dt:first-child {
+  margin-top: 0;
+}
+
+dd {
+  color: #475569;
+  margin-left: 0;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+dd:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* --- 8. 강의 시간표 디자인 (Table) --- */
+table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 16px 0; /* - 테이블 상하 바깥 여백을 32px에서 16px로 대폭 감축 */
+  background-color: #ffffff;
+  border: 1px solid #94a3b8 !important; /* - 브라우저 렌더링 버그 예방 및 선명도를 위해 #94a3b8 적용 */
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.015);
+}
+
+th, td {
+  padding: 8px 12px !important; /* - 셀 패딩을 12px에서 8px로 조여 시간표의 전체 수직 높이를 슬림화 */
+  border: 1px solid #94a3b8 !important; /* - 테두리 격자를 확실히 인지할 수 있도록 명도 조정 */
+  font-size: 14px;
+  text-align: center;
+  transition: all 0.2s ease; /* - 색상 및 폰트 변경 시 부드럽게 전환 */
+}
+
+th {
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* - 시간표 병합 셀로 인한 정렬 깨짐 방지를 위해 개별 수업 셀(Cell) 기반 호버 장착 */
+tbody td:not(:first-child):not([colspan]):hover {
+  background-color: #fff1f2; /* - 마우스가 올라간 수업 칸을 연한 핑크 레드로 하이라이트 */
+  color: #E60024;            /* - 빨간색 텍스트 변경 */
+  cursor: pointer;
+}
+
+/* - CSS-only :has() 선택자를 활용해 자바스크립트 없이 분산된 동일 과목 셀들을 연동하여 하이라이트 */
+table:has(.course-python:hover) .course-python,
+table:has(.course-smart-data:hover) .course-smart-data,
+table:has(.course-statistics:hover) .course-statistics,
+table:has(.course-prompt:hover) .course-prompt,
+table:has(.course-transformer:hover) .course-transformer,
+table:has(.course-project:hover) .course-project {
+  background-color: #fff1f2 !important;
+  color: #E60024 !important;
+  cursor: pointer;
+}
+
+td[colspan="5"] {
+  background-color: #f1f5f9;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* --- 9. 회원가입 입력창 및 전용 폼 요소 디자인 --- */
+form {
+  margin-top: 8px;
+}
+
+fieldset {
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.01);
+}
+
+legend {
+  font-weight: 700;
+  color: #0f172a;
+  padding: 0 16px;
+  font-size: 1.15rem;
+}
+
+label {
+  font-weight: 600;
+  color: #334155;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 14.5px;
+}
+
+form p {
+  margin-bottom: 24px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 16px;
+  margin-top: 8px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+/* - 입력필드 선택 시 테두리에 들어오는 SK 레드 포커스 링 */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #E60024;
+  box-shadow: 0 0 0 3px rgba(230, 0, 36, 0.12);
+}
+
+input[readonly] {
+  background-color: #f8fafc;
+  color: #64748b;
+  cursor: not-allowed;
+  border-color: #e2e8f0;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+  margin-top: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  accent-color: #E60024;
+}
+
+label:has(input[type="radio"]),
+label:has(input[type="checkbox"]) {
+  font-weight: 500;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+/* - 테크니컬한 SK 레드-오렌지 그라데이션 버튼 및 입체 섀도우 --- */
+input[type="submit"],
+input[type="reset"] {
+  padding: 14px 28px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 15.5px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+input[type="submit"] {
+  background: linear-gradient(135deg, #E60024, #FF5C00); /* - SK 레드-오렌지 그라데이션 */
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(230, 0, 36, 0.25);
+}
+
+input[type="submit"]:hover {
+  background: linear-gradient(135deg, #cc001f, #e04f00);
+  box-shadow: 0 6px 20px rgba(230, 0, 36, 0.35);
+  transform: translateY(-1px);
+}
+
+input[type="submit"]:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 8px rgba(230, 0, 36, 0.15);
+}
+
+input[type="reset"] {
+  background-color: #e2e8f0;
+  color: #334155;
+  margin-left: 12px;
+}
+
+input[type="reset"]:hover {
+  background-color: #cbd5e1;
+  color: #0f172a;
+}
+
+input[type="reset"]:active {
+  transform: scale(0.98);
+}
+
+/* --- 10. 이미지 및 비디오 미디어 정렬 --- */
+img, video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.02);
+}
+
+audio {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  outline: none;
+}
+
+/* --- 11. 실시간 메모장 카드 (contenteditable) --- */
+div[contenteditable="true"] {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 18px 24px;
+  min-height: 100px;
+  font-size: 15px;
+  color: #334155;
+  outline: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 14px;
+  box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.01);
+}
+
+div[contenteditable="true"]:focus {
+  background-color: #ffffff;
+  border-color: #E60024;
+  box-shadow: 0 0 0 3px rgba(230, 0, 36, 0.12);
+}
+
+/* --- 12. 여행지 단락 리뷰 카드 스타일 --- */
+.trip-card {
+  background-color: #f8fafc; /* - 흰 바탕 본문 속에서 카드가 쪼개져 보이도록 연한 회색 대비 부여 */
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 24px;
+  margin: 24px 0;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.01);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.trip-card:hover {
+  background-color: #f5f1f1; /* - 호버 시 배경색이 하얗게 켜지며 공중으로 부드럽게 상승 */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  border-color: #cbd5e1;
+}
+
+.trip-card img,
+.trip-card video {
+  display: block;
+  margin: 20px auto 0 auto; /* - 카드 내 사진/영상을 정중앙에 정밀 배치하고 윗간격 설정 */
+  max-width: 100%;
+}
+
+/* - 여행지 방문일자 뱃지 스타일 */
+.trip-date {
+  display: inline-block;
+  background-color: rgba(15, 23, 42, 0.05); /* - 은은한 B2B SaaS 스타일의 반투명 그레이 뱃지 */
+  color: #475569;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}

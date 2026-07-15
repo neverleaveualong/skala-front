@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>나의 소개</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="brand-logo">
+      <span class="brand-text-ax">SK AX</span>
+      <img src="./sk_logo.png" alt="SK Logo" width="24" height="24" style="vertical-align: middle;">
+      <span class="brand-text-skala">&amp; SKALA</span>
+    </div>
+    <a href="index.html" class="back-link">← 메인 화면으로 돌아가기</a>
+  <header>
+    <h1>나의 프로필</h1>
+  </header>
+  
+  <!-- 메인 자기소개 영역: 중첩 리스트 및 설명 리스트 요소를 구조적으로 실습했습니다 -->
+  <main>
+    <!-- 선호 음식 코너: ul 안에 ul을 품은 다차원 중첩 리스트 구조(Nested List) 설계 -->
+    <section>
+      <h2>내가 좋아하는 음식</h2>
+      <ul>
+        <li data-food="pizza">피자
+          <ul>
+            <li>페퍼로니 피자</li>
+            <li>치즈 피자</li>
+          </ul>
+        </li>
+        <li data-food="kebab">케밥
+          <ul>
+            <li>양고기 케밥</li>
+          </ul>
+        </li>
+        <li data-food="sushi">초밥
+          <ul>
+            <li>연어 초밥</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>올해 할 일</h2>
+      <ol type="A">
+        <li>취업</li>
+        <li>운동 (<del>숨쉬기 운동</del> <ins>근력 운동</ins>)</li>
+        <li>충칭 여행</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>나를 설명하는 단어들</h2>
+      <dl>
+        <dt title="성실한 태도">성실함</dt>
+        <dd>매일 꾸준하게 노력하고 약속을 지키는 자세입니다.</dd>
+        <dt title="업무 역량">전문성</dt>
+        <dd>주어진 분야에서 최고의 역량을 발휘하기 위해 깊이 있게 학습합니다.</dd>
+        <dt title="스마트한 일처리">효율적</dt>
+        <dd>불필요한 과정을 줄이고 가장 가치 있는 결과를 만들어냅니다.</dd>
+      </dl>
+    </section>
+  </main>
+
+  
+  </div>
+</body>
+</html>

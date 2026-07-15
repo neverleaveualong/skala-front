@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>나의 시간표</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="brand-logo">
+      <span class="brand-text-ax">SK AX</span>
+      <img src="./sk_logo.png" alt="SK Logo" width="24" height="24" style="vertical-align: middle;">
+      <span class="brand-text-skala">&amp; SKALA</span>
+    </div>
+    <a href="index.html" class="back-link">← 메인 화면으로 돌아가기</a>
+  <header>
+    <h1>나의 시간표 (AI 에이전트 교육 과정)</h1>
+  </header>
+
+  <!-- 메인 시간표 영역: 테이블 태그를 활용해 정밀하게 셀 병합을 설계했습니다 -->
+  <main>
+    <!-- border, cellpadding, cellspacing 등 구식 HTML 속성은 CSS 스타일시스템과 연동해 모던하게 렌더링됩니다 -->
+    <table border="1" width="100%" cellpadding="10" cellspacing="0">
+      <thead>
+        <tr>
+          <th>시간</th>
+          <th>월요일</th>
+          <th>화요일</th>
+          <th>수요일</th>
+          <th>목요일</th>
+          <th>금요일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 오전 세션: 데이터 분석 개요, 파이썬 분석, 프롬프트 설계 기초 학습 -->
+        <tr>
+          <td>09:00 ~ 10:00</td>
+          <td class="course-statistics">데이터 분석 개요 및 기초통계</td>
+          <td rowspan="3" class="course-python">데이터 분석을 위한 Python 이해</td>
+          <td rowspan="2" class="course-statistics">데이터 분석 개요 및 기초통계</td>
+          <td rowspan="3" class="course-smart-data">스마트 데이터 이해 및 활용</td>
+          <td rowspan="2" class="course-transformer">LLM과 Transformer 아키텍처</td>
+        </tr>
+        <tr>
+          <td>10:00 ~ 11:00</td>
+          <td rowspan="2" class="course-prompt">Prompt 설계와 Context</td>
+        </tr>
+        <tr>
+          <td>11:00 ~ 12:00</td>
+          <td class="course-prompt">Prompt 설계와 Context</td>
+          <td class="course-python">데이터 분석을 위한 Python 이해</td>
+        </tr>
+
+        <!-- 공통 휴식 및 식사 시간 -->
+        <tr>
+          <td>12:00 ~ 13:00</td>
+          <td colspan="5" align="center">점심시간 🍱</td>
+        </tr>
+
+        <!-- 오후 세션: 아키텍처 실습, 스마트 데이터 가공 실습 -->
+        <tr>
+          <td>13:00 ~ 14:00</td>
+          <td rowspan="3" class="course-transformer">LLM과 Transformer 아키텍처</td>
+          <td rowspan="2" class="course-smart-data">스마트 데이터 이해 및 활용</td>
+          <td class="course-statistics">데이터 분석 개요 및 기초통계</td>
+          <td rowspan="3" class="course-smart-data">스마트 데이터 이해 및 활용</td>
+          <td class="course-prompt">Prompt 설계와 Context</td>
+        </tr>
+        <tr>
+          <td>14:00 ~ 15:00</td>
+          <td rowspan="2" class="course-python">데이터 분석을 위한 Python 이해</td>
+          <td rowspan="2" class="course-transformer">LLM과 Transformer 아키텍처</td>
+        </tr>
+        <tr>
+          <td>15:00 ~ 16:00</td>
+          <td class="course-prompt">Prompt 설계와 Context</td>
+        </tr>
+
+        <!-- 방과 후 세션: 종합 실무 적용 및 팀 피드백 -->
+        <tr>
+          <td>16:00 ~ 17:00</td>
+          <td rowspan="2" class="course-python">데이터 분석을 위한 Python 이해</td>
+          <td class="course-prompt">Prompt 설계와 Context</td>
+          <td rowspan="2" class="course-smart-data">스마트 데이터 이해 및 활용</td>
+          <td rowspan="2" class="course-transformer">LLM과 Transformer 아키텍처</td>
+          <td rowspan="2" class="course-project">팀 프로젝트 종합 발표</td>
+        </tr>
+        <tr>
+          <td>17:00 ~ 18:00</td>
+          <td>자율 토론 및 피드백</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  </div>
+</body>
+</html>
