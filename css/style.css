@@ -322,20 +322,20 @@ nav a {
   color: #475569;
   font-weight: 500;
   background-color: #f8fafc; /* - 배경색을 더 연하고 투명감 있는 회색(#f8fafc)으로 낮추어 한결 가볍게 표현 */
-  border-left: 3px solid #cbd5e1 !important; /* - 왼쪽 세로축에 은은한 그레이 가이드 바 장착 */
-  border-top: none !important;
-  border-right: none !important;
-  border-bottom: none !important;
+  border-left: 3px solid #cbd5e1; /* - 왼쪽 세로축에 은은한 그레이 가이드 바 장착 (!important 제거로 부드러운 전환 보장) */
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
   text-align: center; /* - 가로 칩 형태이므로 글자를 가운데 정렬 */
   padding-left: 16px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); /* - 0.35초로 넉넉하게 지정하여 아주 쫀득하고 은은한 페이드 효과 부여 */
 }
 
 /* - 메뉴 항목 위로 마우스 올리면 SK 그라데이션 틴트 배경과 왼쪽 라인 슬라이딩 */
 nav a:hover {
   background-color: #fff1f2; /* - 마우스 호버 시 은은한 SK Red 틴트 소프트 핑크 적용 */
   color: #E60024;            /* - 텍스트 SK Red 전환 */
-  border-left-color: #E60024 !important; /* - 호버 시 왼쪽 가이드 바를 선명한 SK Red로 변경 */
+  border-left-color: #E60024; /* - 호버 시 왼쪽 가이드 바를 선명한 SK Red로 변경 */
   padding-left: 20px;        /* - 마이크로 슬라이딩 우측 이동 피드백 */
   font-weight: 600;
   text-decoration: none;
@@ -569,17 +569,22 @@ input[type="reset"] {
   font-family: inherit;
   font-size: 15.5px;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 input[type="submit"] {
-  background: linear-gradient(135deg, #E60024, #FF5C00); /* - SK 레드-오렌지 그라데이션 */
+  /* - 그라데이션의 부드러운 전환을 위해 색상을 대칭적으로 이어 붙이고 배경 크기를 2배로 확장 */
+  background: linear-gradient(135deg, #E60024, #FF5C00, #E60024);
+  background-size: 200% auto;
+  background-position: left center;
   color: #ffffff;
   box-shadow: 0 4px 14px rgba(230, 0, 36, 0.25);
+  transition: background-position 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 input[type="submit"]:hover {
-  background: linear-gradient(135deg, #cc001f, #e04f00);
+  /* - 호버 시 배경 위치를 오른쪽으로 밀어내며 부드러운 그라데이션 색상 시프트 연출 */
+  background-position: right center;
   box-shadow: 0 6px 20px rgba(230, 0, 36, 0.35);
   transform: translateY(-1px);
 }
