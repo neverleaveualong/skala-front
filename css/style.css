@@ -1,7 +1,7 @@
-/* --- 2026년 SK AX 엔터프라이즈 브랜드 테마 스타일시트 --- */
+/* --- SKALA-FRONT 공통 스타일시트 (실습용) --- */
 
-/* --- 1. 구글 웹폰트 불러오기 및 영문/한글 최적화 (프리텐다드 대체) --- */
-/* - 영문 텍스트는 Inter, 국문 텍스트는 Noto Sans KR로 믹스해 프리텐다드 효과 적용 */
+/* --- 1. 구글 웹폰트 불러오기 및 기본 글꼴 적용 --- */
+/* 영문 Inter, 한글 Noto Sans KR을 섞어 쓰기 위해 가져옴 */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
 
 * {
@@ -10,38 +10,38 @@
   padding: 0;
 }
 
-/* - 글로벌 호버 트랜지션 안전망: 모든 링크와 버튼의 페이드 효과를 강제로 부드럽게 일원화 */
+/* 모든 링크랑 버튼에 1초 동안 부드럽게 호버 효과가 들어가도록 트랜지션 처리 */
 a, button, input[type="submit"], input[type="reset"] {
   transition: background-color 1s ease-in-out, color 1s ease-in-out, border-color 1s ease-in-out, box-shadow 1s ease-in-out, transform 1s ease-in-out;
 }
 
-/* --- 2. 기본 문서 환경 및 정렬 (CSS 기반 화면 중앙 정렬) --- */
+/* --- 2. 기본 문서 환경 및 정렬 (가운데 정렬 설정) --- */
 body {
   font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #f8fafc; /* - 눈이 편안한 연한 회색 슬레이트 배경 */
-  color: #334155;            /* - 대기업 인트라넷용 다크 차콜 글자색 */
+  background-color: #f8fafc; /* 바탕은 약간 밝은 회색 톤으로 설정 */
+  color: #334155;            /* 본문 글자색은 너무 검지 않은 짙은 회색으로 설정 */
   line-height: 1.75;
   letter-spacing: -0.015em;
   font-size: 16px;
   word-break: keep-all;
   
-  /* - 모든 페이지의 가로폭을 1000px로 완전 단일화하여 페이지 이동 시 상단 로고의 위치 어긋남(Shifting) 원천 해결 */
+  /* 페이지 폭이 늘어나도 1000px로 고정되어 정돈되어 보이게 설정 */
   max-width: 1000px;
   margin: 0 auto;
-  padding: 60px 80px; /* - 좌우 마진(여백)을 대폭 넓혀 대화면에서도 조밀하지 않고 시원한 레이아웃 연출 */
+  padding: 60px 80px; /* 모니터가 커도 너무 빽빽해 보이지 않게 좌우 패딩을 넓게 줌 */
 }
 
-/* --- 3. 공통 콘텐츠 레이아웃 카드 구성 --- */
+/* --- 3. 공통 콘텐츠 레이아웃 카드 구성 (main, aside 등) --- */
 header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 20px; /* - 헤더 영역 하단 마진을 40px에서 20px로 조여 과도한 여백 제거 */
+  margin-bottom: 20px; /* 제목 밑에 불필요하게 넓은 여백을 줄임 */
 }
 
 main {
   background-color: #ffffff;
-  padding: 24px 32px; /* - 상하 패딩을 40px에서 24px로 좁혀 불필요한 세로 공간 단축 */
+  padding: 24px 32px; /* 시간표나 본문이 답답해 보이지 않도록 내부 패딩 조절 */
   border-radius: 16px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03);
@@ -52,14 +52,14 @@ aside {
   background-color: #ffffff;
   padding: 28px;
   border-radius: 16px;
-  border: 1px solid #cbd5e1; /* - 조금 더 선명한 슬레이트 경계선 */
+  border: 1px solid #cbd5e1; /* 사이드바 테두리는 조금 더 회색으로 연하게 처리 */
   margin-bottom: 24px;
   font-size: 14.5px;
   box-shadow: 0 2px 12px -1px rgba(15, 23, 42, 0.02);
 }
 
 aside ul {
-  list-style: none; /* - 기본 볼릿 원형 제거 */
+  list-style: none; /* 리스트 앞에 동그라미 기호 없앰 */
   padding-left: 0;
   margin-top: 16px;
 }
@@ -77,13 +77,13 @@ aside li:last-child {
   margin-bottom: 0;
 }
 
-/* - SK AX 브랜드 테마 시그니처 사각형 볼릿 */
+/* 리스트 글머리표를 사각형(■) 모양으로 직접 지정 */
 aside li::before {
   content: '■'; 
   position: absolute;
   left: 0;
   top: 2px;
-  color: #E60024; /* - SK Red 색상의 미니 사각 볼릿 */
+  color: #E60024; /* SK 테마 색상인 빨간색으로 사각형 지정 */
   font-size: 8px;
 }
 
@@ -104,7 +104,7 @@ hr {
   margin: 32px 0;
 }
 
-/* --- 4. 제목 스타일링 (SK 시그니처 그라데이션 포인트) --- */
+/* --- 4. 제목 및 로고 스타일링 (SK 그라데이션 적용) --- */
 .brand-logo {
   display: flex;
   align-items: center;
@@ -117,12 +117,12 @@ hr {
   font-size: 18px;
   font-weight: 900;
   letter-spacing: 0.05em;
-  background: linear-gradient(90deg, #E60024, #FF5C00); /* - 모든 로고 텍스트에 SK 브랜드 아이덴티티 그라데이션 적용 */
+  background: linear-gradient(90deg, #E60024, #FF5C00); /* 로고 텍스트에 SK 그라데이션 색상 적용 */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* - 로고 이미지가 글로벌 이미지 스타일(테두리, 라운딩, 그림자)을 상속받지 않도록 차단 */
+/* 로고 나비 이미지는 일반 이미지 스타일(그림자 등)이 들어가지 않도록 리셋 */
 .brand-logo img {
   width: 24px !important;
   height: 24px !important;
@@ -130,9 +130,10 @@ hr {
   border-radius: 0 !important;
   box-shadow: none !important;
   margin: 0 !important;
+  style: vertical-align: middle;
 }
 
-/* - 뒤로가기 링크 스타일 (B2B SaaS 브레드크럼 스타일) */
+/* 뒤로가기 링크 스타일 */
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -146,12 +147,12 @@ hr {
 }
 
 .back-link:hover {
-  color: #E60024; /* - 호버 시 SK Red로 강조 */
-  transform: translateX(-3px); /* - 왼쪽으로 가볍게 밀리는 동적 피드백 */
+  color: #E60024; /* 호버 시 SK Red로 강조 */
+  transform: translateX(-3px); /* 호버 시 왼쪽으로 살짝 이동하는 효과 */
   text-decoration: none;
 }
 
-/* - 미션6: 타이틀 로드 시 부드럽게 위에서 아래로 내려오며 나타나는 페이드인 애니메이션 */
+/* 타이틀 로딩 시 서서히 나타나는 효과 */
 @keyframes headerFadeIn {
   from {
     opacity: 0;
@@ -166,23 +167,23 @@ hr {
 h1 {
   font-size: 2.25rem;
   font-weight: 800;
-  background: linear-gradient(90deg, #E60024, #F9A100); /* - 대제목 텍스트 자체를 SK 그라데이션 컬러로 변경 */
+  background: linear-gradient(90deg, #E60024, #F9A100); /* 대제목 글자에 SK 그라데이션 색상 적용 */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   letter-spacing: -0.025em;
   position: relative;
   padding-bottom: 20px;
-  margin-bottom: 12px; /* - H1 하단 기본 마진을 28px에서 12px로 축소 */
-  animation: headerFadeIn 2.5s cubic-bezier(0.16, 1, 0.3, 1) both; /* - 타이틀 등장 애니메이션 장착 (2.5초로 연장하여 시각적 확인 극대화) */
+  margin-bottom: 12px; /* H1 밑에 큰 마진을 줄여 좁게 맞춤 */
+  animation: headerFadeIn 2.5s cubic-bezier(0.16, 1, 0.3, 1) both; /* 페이지 열 때 2.5초간 서서히 글자가 나타나게 설정 */
 }
 
-/* - 헤더에 제목만 단독으로 존재할 경우(바로가기 메뉴가 없는 경우) 쓸데없는 하단 마진 제거 */
+/* 제목 밑에 불필요한 마진 제거 */
 header h1:last-child {
   margin-bottom: 0;
 }
 
-/* - SK 메인 브랜드 레드 & 오렌지 듀오톤 가로선 포인트 */
+/* 제목 아래 밑줄 효과 적용 */
 h1::after {
   content: '';
   position: absolute;
@@ -205,12 +206,12 @@ h2 {
   position: relative;
 }
 
-/* - 각 박스 컨테이너(main, nav 등) 안의 첫 번째 h2는 상단 여백을 없애 균형 유지 */
+/* 상자 내부의 첫 번째 h2는 위쪽 마진을 없앰 */
 h2:first-of-type {
   margin-top: 0 !important;
 }
 
-/* - 세로형 브랜드 그라데이션 바 */
+/* 소제목 왼쪽 세로줄 그라데이션 효과 */
 h2::before {
   content: '';
   position: absolute;
@@ -222,7 +223,7 @@ h2::before {
   border-radius: 2px;
 }
 
-/* - 메인 화면의 환영 인사 텍스트를 그라데이션 텍스트로 렌더링 */
+/* 메인화면 환영 인사 제목에 그라데이션 폰트 적용 */
 .container:has(> nav) main h2:first-of-type {
   background: linear-gradient(90deg, #E60024, #F9A100);
   -webkit-background-clip: text;
@@ -336,22 +337,22 @@ nav a {
   transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); /* - 1초 동안 아주 느리고 스무스하게 배경/글자 페이드아웃 적용 */
 }
 
-/* - 메뉴 항목 위로 마우스 올리면 SK 그라데이션 틴트 배경과 왼쪽 라인 슬라이딩 */
+/* 호버 시 배경색 변경 및 가이드 바 강조 */
 nav a:hover {
-  background-color: #fff1f2; /* - 마우스 호버 시 은은한 SK Red 틴트 소프트 핑크 적용 */
-  color: #E60024;            /* - 텍스트 SK Red 전환 */
-  border-left-color: #E60024; /* - 호버 시 왼쪽 가이드 바를 선명한 SK Red로 변경 */
-  padding-left: 20px;        /* - 마이크로 슬라이딩 우측 이동 피드백 */
+  background-color: #fff1f2; /* 은은한 연한 빨간색 배경 적용 */
+  color: #E60024;            /* 글자색을 SK Red로 변경 */
+  border-left-color: #E60024; /* 왼쪽 테두리선 강조 */
+  padding-left: 20px;        /* 오른쪽으로 살짝 밀리는 효과 */
   text-decoration: none;
 }
 
-/* - 헤더 영역 내부의 페이지 내 북마크 바로가기용 네비게이션 디자인 */
+/* 상단 헤더의 내부 링크 내비게이션 스타일 */
 header nav {
   background: transparent;
   border: none;
   padding: 0;
   box-shadow: none;
-  margin-top: 4px; /* - 제목 밑줄 바로 아래에 조화롭게 배치되도록 여백 축소 */
+  margin-top: 4px; /* 아래쪽 마진 조절 */
   margin-bottom: 0;
   display: flex;
   flex-wrap: wrap;
@@ -361,21 +362,21 @@ header nav {
 header nav a {
   display: inline-block;
   padding: 8px 14px;
-  background-color: rgba(15, 23, 42, 0.035); /* - 완전 불투명 회색 대신 반투명 소프트 그레이를 채택해 초경량 칩 완성 */
-  border: none !important;    /* - 테두리선 완벽 제거 */
-  border-radius: 6px;        /* - 타원형 캡슐 대신 트렌디한 6px 둥근 사각형 코너 적용 */
+  background-color: rgba(15, 23, 42, 0.035); /* 배경을 반투명 회색으로 설정 */
+  border: none !important;    /* 기본 보더선 제거 */
+  border-radius: 6px;        /* 모서리를 둥글게 깎음 */
   font-size: 13px;
   color: #475569;
   font-weight: 500;
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); /* - 1초로 대폭 늘려 스마트폰 및 대화면에서 부드럽게 번져나가는 페이드인 작동 */
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); /* 호버 효과가 1초 동안 천천히 들어가도록 변경 */
 }
 
 header nav a:hover {
-  background-color: #E60024; /* - 호버 시 SK Red로 가득 채우는 강렬한 시각 피드백 */
-  color: #ffffff;            /* - 흰색 글자 전환 */
+  background-color: #E60024; /* 호버 시 빨간색 배경 채움 */
+  color: #ffffff;            /* 글자를 흰색으로 변경 */
   border-color: #E60024;
-  box-shadow: 0 4px 12px rgba(230, 0, 36, 0.2); /* - 버튼 색상과 어우러지는 레드 글로우 효과 */
-  transform: translateY(-1.5px); /* - 공중으로 도약하는 역동적인 높이 변화 */
+  box-shadow: 0 4px 12px rgba(230, 0, 36, 0.2); /* 호버 시 미세한 그림자 추가 */
+  transform: translateY(-1.5px); /* 호버 시 위로 약간 올라가게 함 */
   text-decoration: none;
 }
 
@@ -430,18 +431,18 @@ dd:last-child {
 table {
   width: 100% !important;
   border-collapse: collapse !important;
-  margin: 16px 0; /* - 테이블 상하 바깥 여백을 32px에서 16px로 대폭 감축 */
+  margin: 16px 0; /* 테이블 위아래 마진 조절 */
   background-color: #ffffff;
-  border: 1px solid #94a3b8 !important; /* - 브라우저 렌더링 버그 예방 및 선명도를 위해 #94a3b8 적용 */
+  border: 1px solid #94a3b8 !important; /* 시간표 테두리를 깔끔하게 처리하기 위해 1px solid 적용 */
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.015);
 }
 
 th, td {
-  padding: 8px 12px !important; /* - 셀 패딩을 12px에서 8px로 조여 시간표의 전체 수직 높이를 슬림화 */
-  border: 1px solid #94a3b8 !important; /* - 테두리 격자를 확실히 인지할 수 있도록 명도 조정 */
+  padding: 8px 12px !important; /* 테이블 안의 여백을 좁혀서 전체 높이를 슬림하게 조절 */
+  border: 1px solid #94a3b8 !important; /* 격자 구분선 선명하게 설정 */
   font-size: 14px;
   text-align: center;
-  transition: all 0.2s ease; /* - 색상 및 폰트 변경 시 부드럽게 전환 */
+  transition: all 0.2s ease; /* 마우스 올렸을 때 부드럽게 색상이 바뀌도록 트랜지션 적용 */
 }
 
 th {
@@ -450,14 +451,14 @@ th {
   font-weight: 700;
 }
 
-/* - 시간표 병합 셀로 인한 정렬 깨짐 방지를 위해 개별 수업 셀(Cell) 기반 호버 장착 */
+/* 시간표 각 셀(수업 이름) 마우스 호버 효과 */
 tbody td:not(:first-child):not([colspan]):hover {
-  background-color: #fff1f2; /* - 마우스가 올라간 수업 칸을 연한 핑크 레드로 하이라이트 */
-  color: #E60024;            /* - 빨간색 텍스트 변경 */
+  background-color: #fff1f2; /* 마우스가 올라간 시간표 셀을 연한 분홍색으로 강조 */
+  color: #E60024;            /* 글자색을 빨간색으로 변경 */
   cursor: pointer;
 }
 
-/* - CSS-only :has() 선택자를 활용해 자바스크립트 없이 분산된 동일 과목 셀들을 연동하여 하이라이트 */
+/* 자바스크립트 대신 CSS 선택자 :has를 사용해서 마우스를 올린 과목과 같은 과목이 모두 강조되도록 처리 */
 table:has(.course-python:hover) .course-python,
 table:has(.course-smart-data:hover) .course-smart-data,
 table:has(.course-statistics:hover) .course-statistics,
@@ -475,7 +476,7 @@ td[colspan="5"] {
   color: #475569;
 }
 
-/* --- 9. 회원가입 입력창 및 전용 폼 요소 디자인 --- */
+/* --- 9. 회원가입 양식(Form) 스타일링 --- */
 form {
   margin-top: 8px;
 }
@@ -530,7 +531,7 @@ textarea {
   box-sizing: border-box;
 }
 
-/* - 입력필드 선택 시 테두리에 들어오는 SK 레드 포커스 링 */
+/* 입력 필드를 클릭(포커스)했을 때 빨간색 테두리와 그림자 효과 지정 */
 input:focus,
 select:focus,
 textarea:focus {
@@ -563,7 +564,7 @@ label:has(input[type="checkbox"]) {
   cursor: pointer;
 }
 
-/* - 테크니컬한 SK 레드-오렌지 그라데이션 버튼 및 입체 섀도우 --- */
+/* 제출(가입하기) 및 초기화 버튼 공통 스타일 */
 input[type="submit"],
 input[type="reset"] {
   padding: 14px 28px;
@@ -577,15 +578,15 @@ input[type="reset"] {
 }
 
 input[type="submit"] {
-  background: linear-gradient(135deg, #E60024, #FF5C00); /* - SK 레드-오렌지 그라데이션 */
+  background: linear-gradient(135deg, #E60024, #FF5C00); /* 배경을 SK 레드-오렌지 그라데이션 색상으로 지정 */
   color: #ffffff;
   box-shadow: 0 4px 14px rgba(230, 0, 36, 0.25);
-  filter: brightness(1); /* - 애니메이션 호환을 위한 밝기 필터 기본값 설정 */
+  filter: brightness(1); /* 필터 효과 기본값 설정 */
   transition: filter 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 input[type="submit"]:hover {
-  filter: brightness(1.15); /* - 밝기를 15% 증가시켜 뚝 끊김 없이 부드럽게 점진 발광하는 시각 모션 구현 */
+  filter: brightness(1.15); /* 마우스 올렸을 때 버튼이 부드럽게 약간 밝아지도록 조절 */
   box-shadow: 0 6px 20px rgba(230, 0, 36, 0.35);
   transform: translateY(-1px);
 }
@@ -651,7 +652,7 @@ div[contenteditable="true"]:focus {
 
 /* --- 12. 여행지 단락 리뷰 카드 스타일 --- */
 .trip-card {
-  background-color: #f8fafc; /* - 흰 바탕 본문 속에서 카드가 쪼개져 보이도록 연한 회색 대비 부여 */
+  background-color: #f8fafc; /* 본문 배경색 위에 구분되어 보이도록 옅은 회색 배경 적용 */
   border: 1px solid #e2e8f0;
   border-radius: 24px;
   padding: 24px;
@@ -662,7 +663,7 @@ div[contenteditable="true"]:focus {
 }
 
 .trip-card:hover {
-  background-color: #f5f1f1; /* - 호버 시 배경색이 하얗게 켜지며 공중으로 부드럽게 상승 */
+  background-color: #f5f1f1; /* 호버 시 카드가 살짝 위로 가면서 배경색이 변하도록 설정 */
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
   border-color: #cbd5e1;
@@ -672,16 +673,16 @@ div[contenteditable="true"]:focus {
 .trip-card video {
   display: block;
   width: 100%;
-  height: 150px; /* - 바둑판 그리드 안에서 일관된 비율을 유지하도록 고정 높이 지정 */
-  object-fit: cover; /* - 이미지/비디오 비율 왜곡 방지 및 크롭 정렬 */
-  border-radius: 8px; /* - 미디어를 둥글게 다듬어 세련된 카드 외형 구현 */
-  margin: 16px auto 0 auto; /* - 카드 내 사진/영상을 정중앙에 정밀 배치하고 윗간격 설정 */
+  height: 150px; /* 그리드 정렬이 깨지지 않게 고정 높이 지정 */
+  object-fit: cover; /* 이미지 찌그러지지 않게 cover 속성 지정 */
+  border-radius: 8px; /* 둥근 사각형 코너 적용 */
+  margin: 16px auto 0 auto; /* 이미지 정중앙 정렬 및 상단 여백 조절 */
 }
 
-/* - 여행지 방문일자 뱃지 스타일 */
+/* 여행지 날짜 표시 뱃지 스타일 */
 .trip-date {
   display: inline-block;
-  background-color: rgba(15, 23, 42, 0.05); /* - 은은한 B2B SaaS 스타일의 반투명 그레이 뱃지 */
+  background-color: rgba(15, 23, 42, 0.05); /* 날짜 배경을 연한 회색으로 채워 뱃지 느낌 냄 */
   color: #475569;
   font-size: 11.5px;
   font-weight: 700;
@@ -693,7 +694,7 @@ div[contenteditable="true"]:focus {
 
 /* --- 11. 신규 레이아웃 미션 (Flexbox & Grid 배치) --- */
 
-/* - Index.html 전용 메인 & 사이드바 가로 배치 레이아웃 */
+/* index.html 메인 영역이랑 사이드바 영역 가로 flex 정렬 */
 .content-layout {
   display: flex;
   gap: 32px;
@@ -702,22 +703,22 @@ div[contenteditable="true"]:focus {
 }
 
 .content-layout main {
-  flex: 3; /* - 메인 영역이 더 넓은 공간을 차지하도록 설정 */
+  flex: 3; /* 본문이 더 많은 너비(75%)를 차지하도록 설정 */
   margin-bottom: 0 !important;
 }
 
 .content-layout aside {
-  flex: 1; /* - 사이드바 영역이 좁은 33% 공간을 차지하도록 설정 */
+  flex: 1; /* 사이드바는 남은 영역(25%)을 차지하도록 설정 */
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
-/* - myTrip.html 전용 3열 바둑판 Grid 레이아웃 */
+/* myTrip.html 3열 바둑판 Grid 레이아웃 */
 .trip-grid-container {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 24px !important;
-  background-color: transparent !important; /* - 격자형 배치에 어울리도록 기본 main 패널 배경 제거 */
+  background-color: transparent !important; /* 그리드 영역에 맞추기 위해 기본 본문 배경 및 테두리 초기화 */
   border: none !important;
   box-shadow: none !important;
   padding: 0 !important;
@@ -732,7 +733,7 @@ div[contenteditable="true"]:focus {
 }
 
 .trip-grid-container .trip-card {
-  margin: 16px 0 0 0 !important; /* - 섹션 박스 내부 여백과 겹치지 않게 카드 마진 최소화 */
+  margin: 16px 0 0 0 !important; /* 본문 패딩과 겹치지 않게 마진 조절 */
   border: none !important;
   padding: 0 !important;
   background-color: transparent !important;
@@ -740,7 +741,7 @@ div[contenteditable="true"]:focus {
 }
 
 .trip-grid-container .trip-card:hover {
-  transform: none !important; /* - 섹션 카드 전체가 호버 효과를 대신 가지므로 중복 변형 억제 */
+  transform: none !important; /* 섹션 박스가 올라가는 애니메이션을 타므로 중복 효과 제거 */
 }
 
 .trip-grid-container section {
@@ -749,19 +750,19 @@ div[contenteditable="true"]:focus {
 
 .trip-grid-container section:hover {
   background-color: #ffffff;
-  transform: translateY(-4px); /* - 바둑판 카드 전체가 살짝 떠오르는 모던한 인터랙션 */
+  transform: translateY(-4px); /* 카드 마우스 호버 시 4px 공중으로 부드럽게 상승하고 그림자 딥 모션 구현 */
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
   border-color: #cbd5e1;
 }
 
-/* - 미션5: 스마트폰에서 보기 (786px 이하 반응형 웹 디자인) */
+/* 미션5: 스마트폰 크기 대응 (786px 이하 반응형 웹 디자인) */
 @media (max-width: 786px) {
-  /* 1) index.html: 본문 | 사이드바 구조를 세로 1열로 변경 */
+  /* 1) index.html: 본문이랑 사이드바를 세로 1줄로 정렬 */
   .content-layout {
     flex-direction: column;
   }
   
-  /* 1) index.html: 바로가기 메뉴도 세로 1열로 정렬 */
+  /* 1) index.html: 메뉴들도 세로 1줄로 배치 */
   nav ul {
     flex-direction: column;
   }
@@ -770,7 +771,7 @@ div[contenteditable="true"]:focus {
     width: 100%;
   }
 
-  /* 2) myTrip.html: 3열 바둑판 배열을 1열로 조정 */
+  /* 2) myTrip.html: 3열 카드 배열을 1열로 조정 */
   .trip-grid-container {
     grid-template-columns: 1fr !important;
   }

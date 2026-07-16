@@ -29,9 +29,9 @@
     </ul>
   </nav>
 
-  <!-- 메인 콘텐츠와 사이드바를 가로로 나란히 배치하기 위한 레이아웃 감싸기 -->
+  <!-- 본문이랑 사이드바 영역 -->
   <div class="content-layout">
-    <!-- 메인 콘텐츠 영역 (환영 메시지와 실시간 메모장이 들어갑니다) -->
+    <!-- 메인 영역 -->
     <main>
       <h2>👋 환영합니다!</h2>
       <p>스칼라에 오신 것을 환영합니다.</p>
@@ -40,14 +40,14 @@
 
       <hr>
 
-      <!-- 오늘의 메모장: contenteditable 속성을 적용해 데이터베이스 없이 브라우저에서 바로 필기가 가능합니다 -->
+      <!-- 실습 메모장 -->
       <h3>오늘의 실시간 메모장</h3>
       <div contenteditable="true">
         마우스로 이곳을 클릭하면 오늘 해야 할 일이나 메모를 직접 적고 수정할 수 있습니다. (HTML5 전역 속성 실습)
       </div>
     </main>
 
-    <!-- 우측 사이드바 영역: 이번 교육 과정 동안 학습하고 실습해본 핵심 기술 내역들을 아카이빙했습니다 -->
+    <!-- 사이드바 부가 기술 소개 -->
     <aside>
       <h3>추가로 학습한 HTML & CSS</h3>
       <ul>
@@ -61,12 +61,12 @@
         <li><strong>HTML5 시맨틱 레이아웃</strong>: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;aside&gt;</code> 등을 도입하여 포털 형태의 웹 문서 구조 설계</li>
         <li><strong>CSS3 고급 선택자 제어</strong>: 부모 존재 감지(<code>:has</code>), 특정 조건 제외(<code>:not</code>), 의사 클래스(<code>:hover</code>, <code>:focus</code>, <code>:active</code>)의 유기적 설계</li>
         <li><strong>모던 CSS 박스 모델 응용</strong>: 테두리 병합(<code>border-collapse</code>) 및 테이블 셀 병합(<code>rowspan</code>) 렌더링 오류를 개선한 시간표 그리드 설계</li>
-        <li><strong>초고감도 모션 트랜지션</strong>: 마우스 오버 및 터치 반응에 0.4초의 3차 베지에 감속 곡선(Stripe/Apple 디자인 스타일) 적용</li>
+        <li><strong>부드러운 호버 트랜지션</strong>: 마우스 올렸을 때 배경색 등이 서서히 바뀌도록 transition 설정</li>
       </ul>
     </aside>
   </div>
 
-  <!-- 하단 정보 영역: 저작권 표시 -->
+  <!-- 하단 푸터 -->
   <footer>
     <hr>
     <p>© 2026. SK AX &amp; SKALA. All rights reserved.</p>
