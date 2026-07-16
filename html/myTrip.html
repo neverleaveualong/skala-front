@@ -14,86 +14,116 @@
       <span class="brand-text-skala">&amp; SKALA</span>
     </div>
     <a href="index.html" class="back-link">← 메인 화면으로 돌아가기</a>
-  <header>
-    <h1>나의 여행지 소개</h1>
+    
+    <header>
+      <h1>나의 여행지 소개</h1>
 
-    <p>배경음악 듣기</p>
-    <audio controls>
-      <source src="../media/travel_bgm.mp3" type="audio/mpeg">
-      브라우저가 오디오 태그를 지원하지 않습니다.
-    </audio>
+      <p>배경음악 듣기</p>
+      <audio controls>
+        <source src="../media/travel_bgm.mp3" type="audio/mpeg">
+        브라우저가 오디오 태그를 지원하지 않습니다.
+      </audio>
 
-    <nav>
-      <a href="#nz">뉴질랜드(해밀턴)</a>
-      <a href="#hk">홍콩(빅토리아피크)</a>
-      <a href="#macau">마카오</a>
-      <a href="#danang">다낭</a>
-    </nav>
-  </header>
+      <!-- 💡 확장된 6개 여행지 바로가기 링크 -->
+      <nav>
+        <a href="#nz">뉴질랜드(해밀턴)</a>
+        <a href="#hk">홍콩(빅토리아피크)</a>
+        <a href="#macau">마카오</a>
+        <a href="#danang">다낭</a>
+        <a href="#jeju">제주</a>
+        <a href="#gangneung">강릉</a>
+      </nav>
+    </header>
 
-  <!-- 여행지 카드 Grid 영역 -->
-  <main class="trip-grid-container">
-    <!-- 1. 뉴질랜드 해밀턴 가든 상세 설명 -->
-    <section id="nz">
-      <article>
-        <h2>1. 뉴질랜드 (해밀턴)</h2>
-        <p class="trip-card">
-          <!-- 방문일 뱃지 -->
-          <span class="trip-date">📅 2024. 06</span><br>
-          뉴질랜드 북섬에 위치한 <strong>해밀턴(Hamilton)</strong>은 아름다운 해밀턴 가든과 해밀턴 호수가 유명한 평화롭고 정원이 아름다운 도시입니다.
-          <!-- 해밀턴 가든 이미지 -->
-          <img src="../media/travelHamilton.jpg" alt="뉴질랜드 해밀턴 가든 전경" title="아름다운 해밀턴 가든" width="400">
-        </p>
-      </article>
-    </section>
+    <!-- 여행지 카드 Grid 영역 (3열 2행으로 가로폭을 여백 없이 꽉 채우는 화면 연출) -->
+    <main class="trip-grid-container">
+      <!-- 1. 뉴질랜드 해밀턴 가든 상세 설명 -->
+      <section id="nz">
+        <article>
+          <h2>1. 뉴질랜드 (해밀턴)</h2>
+          <p class="trip-card">
+            <!-- 방문일 뱃지 (YY.MM 포맷 일원화) -->
+            <span class="trip-date">📅 24.06</span><br>
+            뉴질랜드 북섬에 위치한 <strong>해밀턴(Hamilton)</strong>은 아름다운 해밀턴 가든과 해밀턴 호수가 유명한 평화롭고 정원이 아름다운 도시입니다.
+            <!-- 해밀턴 가든 이미지 -->
+            <img src="../media/travelHamilton.jpg" alt="뉴질랜드 해밀턴 가든 전경" title="아름다운 해밀턴 가든" width="400" loading="lazy">
+          </p>
+        </article>
+      </section>
 
-    <!-- 2. 홍콩 빅토리아피크 야경 및 전망 설명 -->
-    <section id="hk">
-      <article>
-        <h2>2. 홍콩 (빅토리아피크)</h2>
-        <p class="trip-card">
-          <!-- 방문일 뱃지 -->
-          <span class="trip-date">📅 2024. 12</span><br>
-          홍콩의 <strong>빅토리아 피크(Victoria Peak)</strong>는 홍콩 섬에서 가장 높은 산으로, 홍콩의 도심 빌딩 숲과 화려한 야경을 한눈에 내려다볼 수 있는 최고의 전망 명소입니다.
-          <!-- 빅토리아 피크 비디오 -->
-          <video width="400" controls>
-            <source src="../media/travelVictoriaPeak.webm" type="video/webm">
-            브라우저가 비디오 태그를 지원하지 않습니다.
-          </video>
-        </p>
-      </article>
-    </section>
+      <!-- 2. 홍콩 빅토리아피크 야경 및 전망 설명 -->
+      <section id="hk">
+        <article>
+          <h2>2. 홍콩 (빅토리아피크)</h2>
+          <p class="trip-card">
+            <!-- 방문일 뱃지 -->
+            <span class="trip-date">📅 24.12</span><br>
+            홍콩의 <strong>빅토리아 피크(Victoria Peak)</strong>는 홍콩 섬에서 가장 높은 산으로, 홍콩의 도심 빌딩 숲과 화려한 야경을 한눈에 내려다볼 수 있는 최고의 전망 명소입니다.
+            <!-- 빅토리아 피크 비디오 -->
+            <video width="400" controls>
+              <source src="../media/travelVictoriaPeak.webm" type="video/webm">
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </p>
+        </article>
+      </section>
 
-    <!-- 3. 마카오 유적 및 관광 설명 -->
-    <section id="macau">
-      <article>
-        <h2>3. 마카오</h2>
-        <p class="trip-card">
-          <!-- 방문일 뱃지 -->
-          <span class="trip-date">📅 2025. 12</span><br>
-          동양과 서양의 문화가 융합된 <strong>마카오(Macau)</strong>는 세계문화유산인 성 바오로 성당 유적과 세나도 광장, 그리고 화려한 야간 카지노 리조트 거리로 유명합니다.
-          <!-- 성 바오로 성당 이미지 -->
-          <img src="../media/travelMacau.jpg" alt="마카오 성 바오로 성당 유적" title="성 바오로 성당 유적지" width="400">
-        </p>
-      </article>
-    </section>
+      <!-- 3. 마카오 유적 및 관광 설명 -->
+      <section id="macau">
+        <article>
+          <h2>3. 마카오</h2>
+          <p class="trip-card">
+            <!-- 방문일 뱃지 -->
+            <span class="trip-date">📅 25.12</span><br>
+            동양과 서양의 문화가 융합된 <strong>마카오(Macau)</strong>는 세계문화유산인 성 바오로 성당 유적과 세나도 광장, 그리고 화려한 야간 카지노 리조트 거리로 유명합니다.
+            <!-- 성 바오로 성당 이미지 -->
+            <img src="../media/travelMacau.jpg" alt="마카오 성 바오로 성당 유적" title="성 바오로 성당 유적지" width="400" loading="lazy">
+          </p>
+        </article>
+      </section>
 
-    <!-- 4. 베트남 다낭 휴양 및 휴식 설명 -->
-    <section id="danang">
-      <article>
-        <h2>4. 다낭</h2>
-        <p class="trip-card">
-          <!-- 방문일 뱃지 -->
-          <span class="trip-date">📅 2025. 12</span><br>
-          베트남 중부의 대표적인 휴양 도시 <strong>다낭(Da Nang)</strong>은 끝없이 펼쳐진 미케 비치와 바나힐 골든 브릿지(손 모양 다리), 그리고 저렴하고 맛있는 베트남 로컬 음식이 매력적인 곳입니다.
-          <!-- 다낭 이미지 -->
-          <img src="../media/travelDanang.jpg" alt="다낭 골든 브릿지" title="다낭 바나힐 골든 브릿지" width="400">
-        </p>
-      </article>
-    </section>
-  </main>
+      <!-- 4. 베트남 다낭 휴양 및 휴식 설명 -->
+      <section id="danang">
+        <article>
+          <h2>4. 다낭</h2>
+          <p class="trip-card">
+            <!-- 방문일 뱃지 -->
+            <span class="trip-date">📅 25.12</span><br>
+            베트남 중부의 대표적인 휴양 도시 <strong>다낭(Da Nang)</strong>은 끝없이 펼쳐진 미케 비치와 바나힐 골든 브릿지(손 모양 다리), 그리고 저렴하고 맛있는 베트남 로컬 음식이 매력적인 곳입니다.
+            <!-- 다낭 이미지 -->
+            <img src="../media/travelDanang.jpg" alt="다낭 골든 브릿지" title="다낭 바나힐 골든 브릿지" width="400" loading="lazy">
+          </p>
+        </article>
+      </section>
 
-  
+      <!-- 5. 대한민국 제주 관광 설명 (신규 추가) -->
+      <section id="jeju">
+        <article>
+          <h2>5. 제주</h2>
+          <p class="trip-card">
+            <!-- 방문일 뱃지 -->
+            <span class="trip-date">📅 23.07</span><br>
+            대한민국의 가장 큰 섬인 <strong>제주도(Jeju Island)</strong>는 성산일출봉, 한라산, 그리고 푸른 바다가 어우러진 천혜의 자연경관을 지닌 세계적인 평화의 섬이자 대표적인 힐링 관광지입니다.
+            <!-- 제주 이미지 -->
+            <img src="../media/travelJeju.jpg" alt="제주 자연경관 전경" title="아름다운 제주 풍경" width="400" loading="lazy">
+          </p>
+        </article>
+      </section>
+
+      <!-- 6. 대한민국 강릉 휴양 설명 (신규 추가) -->
+      <section id="gangneung">
+        <article>
+          <h2>6. 강릉</h2>
+          <p class="trip-card">
+            <!-- 방문일 뱃지 -->
+            <span class="trip-date">📅 26.07</span><br>
+            동해안을 대표하는 관광 도시 <strong>강릉(Gangneung)</strong>은 끝없이 펼쳐진 에메랄드빛 경포 해변과 안목 커피거리, 그리고 맛있는 초당순두부가 가득한 낭만적인 힐링 여행지입니다.
+            <!-- 강릉 이미지 -->
+            <img src="../media/travelGangneung.jpg" alt="강릉 경포 해변 전경" title="푸른 강릉 해변" width="400" loading="lazy">
+          </p>
+        </article>
+      </section>
+    </main>
   </div>
 </body>
 </html>
