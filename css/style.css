@@ -735,19 +735,24 @@ div[contenteditable="true"]:focus {
   border-color: #cbd5e1;
 }
 
-/* - 모바일 반응형 뷰포트 지원 (미디어 쿼리) */
-@media (max-width: 900px) {
-  .trip-grid-container {
-    grid-template-columns: repeat(2, 1fr) !important; /* - 태블릿 가로 크기에서는 2열로 자동 압축 */
-  }
-}
-
-@media (max-width: 640px) {
+/* - 미션5: 스마트폰에서 보기 (786px 이하 반응형 웹 디자인) */
+@media (max-width: 786px) {
+  /* 1) index.html: 본문 | 사이드바 구조를 세로 1열로 변경 */
   .content-layout {
-    flex-direction: column; /* - 모바일 폰 해상도에서는 메인과 사이드바를 세로로 적층 */
+    flex-direction: column;
   }
   
+  /* 1) index.html: 바로가기 메뉴도 세로 1열로 정렬 */
+  nav ul {
+    flex-direction: column;
+  }
+  
+  nav li {
+    width: 100%;
+  }
+
+  /* 2) myTrip.html: 3열 바둑판 배열을 1열로 조정 */
   .trip-grid-container {
-    grid-template-columns: 1fr !important; /* - 모바일 폰 해상도에서는 1열로 떨어지도록 유연하게 전환 */
+    grid-template-columns: 1fr !important;
   }
 }
