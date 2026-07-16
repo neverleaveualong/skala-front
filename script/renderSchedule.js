@@ -25,8 +25,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const weekKeys = Object.keys(weeks).map(Number).sort((a, b) => a - b);
   
-  // 2. 초기 상태 로드 (로컬 스토리지 확인 또는 1주차 기본값)
-  let currentWeek = parseFloat(localStorage.getItem("currentWeek")) || weekKeys[0];
+  // 2. 현재 시스템 날짜를 기준으로 오늘이 몇 주차인지 자동으로 계산
+  const getTodayWeek = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const todayStr = `${year}-${month}-${day}`;
+    
+    // 1) 오늘 날짜와 정확히 매핑되는 레코드 검색
+    const exactMatch = scheduleData.find(item => item.date === todayStr);
+    if (exactMatch && exactMatch.week) {
+      return parseFloat(exactMatch.week);
+    }
+    
+    // 2) 오늘 이전 날짜 중 가장 최근의 주차 데이터 검색
+    const pastRecords = scheduleData
+      .filter(item => item.date <= todayStr && item.week)
+      .sort((a, b) => b.date.localeCompare(a.date));
+    if (pastRecords.length > 0) {
+      return parseFloat(pastRecords[0].week);
+    }
+    
+    // 3) 오늘 이후 날짜 중 가장 빠른 주차 데이터 검색
+    const futureRecords = scheduleData
+      .filter(item => item.date >= todayStr && item.week)
+      .sort((a, b) => a.date.localeCompare(b.date));
+    if (futureRecords.length > 0) {
+      return parseFloat(futureRecords[0].week);
+    }
+    
+    return weekKeys[0]; // 기본값: 1주차
+  };
+
+  let currentWeek = getTodayWeek();
   if (!weekKeys.includes(currentWeek)) {
     currentWeek = weekKeys[0];
   }
@@ -34,9 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedBan = localStorage.getItem("selectedBan") || "1반";
   classSelect.value = selectedBan;
 
-  // 3. 날씨/시간표 카드 클래스 매핑 함수
+  // 3. 날씨/시간표 카드 클래스 매핑 함수 (CSS 호버 강조 호환용 클래스 부여)
   function getCourseClass(subject) {
-    if (!subject) return "course-default";
+    if (!subject) return "";
     const s = subject.toLowerCase();
     
     if (s.includes("python") || s.includes("파이썬")) return "course-python";
@@ -52,41 +84,39 @@ document.addEventListener("DOMContentLoaded", () => {
     if (s.includes("feature") || s.includes("피처") || s.includes("엔지니어링")) return "course-feature";
     if (s.includes("vue")) return "course-vue";
     
-    return "course-default";
+    return "";
   }
 
-  // 4. 셀 렌더링 헬퍼 함수
+  // 4. 셀 렌더링 헬퍼 함수 (기존 테이블 스타일 유지)
   function renderCell(dayItem) {
     if (!dayItem) {
-      return `<td class="empty-cell">수업 없음 💤</td>`;
+      return `<td>수업 없음 💤</td>`;
     }
 
     const subject = dayItem.subject ? dayItem.subject.trim() : "";
     const teacher = dayItem.teachers[selectedBan] ? dayItem.teachers[selectedBan].trim() : "";
 
     if (!subject) {
-      return `<td class="empty-cell">수업 없음 💤</td>`;
+      return `<td>수업 없음 💤</td>`;
     }
 
     // 공휴일/대체휴일 감지
-    if (subject.includes("대체휴일") || subject.includes("휴강") || subject.includes("추석") || subject.includes("개천절") || subject.includes("한글날") || subject.includes("성탄절") || subject.includes("신정")) {
-      return `<td class="holiday-cell">🇰🇷 <strong>${subject}</strong></td>`;
+    if (subject.includes("대체휴일") || subject.includes("휴강") || subject.includes("추석") || subject.includes("개천절") || subject.includes("한글날") || subject.includes("성탄절") || subject.includes("신정") || subject.includes("광복절")) {
+      return `<td class="holiday-cell"><strong>${subject}</strong></td>`;
     }
 
     const cellClass = getCourseClass(subject);
 
     return `
       <td class="${cellClass}">
-        <div class="subject-title">${subject}</div>
-        ${teacher ? `<div class="teacher-name">👤 담당: ${teacher} 교수</div>` : `<div class="teacher-name">👤 실습 및 자율학습</div>`}
+        <strong>${subject}</strong>
+        ${teacher ? `<br><small style="color: #64748b;">(👤 ${teacher} 교수)</small>` : ""}
       </td>
     `;
   }
 
   // 5. 시간표 렌더링 핵심 로직
   function renderTimetable() {
-    // 상태 동기화 저장
-    localStorage.setItem("currentWeek", currentWeek);
     localStorage.setItem("selectedBan", selectedBan);
 
     const weekItems = weeks[currentWeek] || [];
@@ -114,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     daysData.forEach((dayItem, idx) => {
       const dayName = weekdays[idx];
       const dateShort = dayItem ? dayItem.date.substring(5).replace('-', '/') : ""; // MM/DD 포맷
-      headerHtml += `<th>${dayName}요일${dateShort ? `<br><small>${dateShort}</small>` : ""}</th>`;
+      headerHtml += `<th>${dayName}요일${dateShort ? `<br><small style="font-weight: normal; color: #64748b;">(${dateShort})</small>` : ""}</th>`;
     });
     scheduleTableHeader.innerHTML = headerHtml;
 
@@ -122,19 +152,19 @@ document.addEventListener("DOMContentLoaded", () => {
     let bodyHtml = "";
 
     // 오전 세션 (09:00 ~ 12:00)
-    bodyHtml += `<tr><td class="time-col"><strong>오전 수업</strong><br><small>09:00 ~ 12:00</small></td>`;
+    bodyHtml += `<tr><td style="background-color: #f8fafc; font-weight: bold; width: 12%;">오전 수업<br><small style="font-weight: normal; color: #64748b;">09:00 ~ 12:00</small></td>`;
     daysData.forEach(dayItem => {
       bodyHtml += renderCell(dayItem);
     });
     bodyHtml += `</tr>`;
 
     // 점심시간 고정 세션 (12:00 ~ 13:00)
-    bodyHtml += `<tr><td class="time-col"><strong>점심 시간</strong><br><small>12:00 ~ 13:00</small></td>`;
-    bodyHtml += `<td colspan="5" class="lunch-cell">🍱 맛있는 점심식사 및 휴식 시간</td>`;
+    bodyHtml += `<tr><td style="background-color: #f8fafc; font-weight: bold;">점심 시간<br><small style="font-weight: normal; color: #64748b;">12:00 ~ 13:00</small></td>`;
+    bodyHtml += `<td colspan="5" style="background-color: #f1f5f9; font-weight: 600; color: #475569; text-align: center;">🍱 점심시간 (외식 및 휴식)</td>`;
     bodyHtml += `</tr>`;
 
     // 오후 세션 (13:00 ~ 18:00)
-    bodyHtml += `<tr><td class="time-col"><strong>오후 수업</strong><br><small>13:00 ~ 18:00</small></td>`;
+    bodyHtml += `<tr><td style="background-color: #f8fafc; font-weight: bold;">오후 수업<br><small style="font-weight: normal; color: #64748b;">13:00 ~ 18:00</small></td>`;
     daysData.forEach(dayItem => {
       bodyHtml += renderCell(dayItem);
     });

@@ -656,13 +656,19 @@ tbody td:not(:first-child):not([colspan]):hover {
   cursor: pointer;
 }
 
-/* 자바스크립트 대신 CSS 선택자 :has를 사용해서 마우스를 올린 과목과 같은 과목이 모두 강조되도록 처리 */
 table:has(.course-python:hover) .course-python,
 table:has(.course-smart-data:hover) .course-smart-data,
 table:has(.course-statistics:hover) .course-statistics,
 table:has(.course-prompt:hover) .course-prompt,
 table:has(.course-transformer:hover) .course-transformer,
-table:has(.course-project:hover) .course-project {
+table:has(.course-project:hover) .course-project,
+table:has(.course-java:hover) .course-java,
+table:has(.course-msa:hover) .course-msa,
+table:has(.course-sllm:hover) .course-sllm,
+table:has(.course-feature:hover) .course-feature,
+table:has(.course-vue:hover) .course-vue,
+table:has(.course-git:hover) .course-git,
+table:has(.course-web:hover) .course-web {
   background-color: #fff1f2 !important;
   color: #E60024 !important;
   cursor: pointer;
@@ -1125,159 +1131,10 @@ div[contenteditable="true"]:focus {
   color: #0f172a;
 }
 
-/* 시간표 표 스타일링 */
-.schedule-table {
-  border-collapse: collapse;
-  border: 1px solid #cbd5e1;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
-}
-
-.schedule-table th {
-  background-color: #0f172a; /* 헤더는 어두운 Charcoal */
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 14px;
-  border: 1px solid #1e293b;
-}
-
-.schedule-table th small {
-  color: #94a3b8;
-  font-weight: 400;
-}
-
-.schedule-table td {
-  padding: 16px;
-  vertical-align: middle;
-  border: 1px solid #e2e8f0;
-  font-size: 13.5px;
-}
-
-.time-col {
-  background-color: #f8fafc;
-  text-align: center;
-  color: #475569;
-  width: 12%;
-  font-weight: 600;
-  border-right: 2px solid #cbd5e1 !important;
-}
-
-.time-col small {
-  color: #64748b;
-  font-weight: 400;
-}
-
-.lunch-cell {
-  background-color: #fffbeb;
-  color: #d97706;
-  font-weight: 700;
-  text-align: center;
-  font-size: 14.5px;
-}
-
 .holiday-cell {
-  background-color: #fef2f2;
-  color: #ef4444;
-  text-align: center;
+  background-color: #fef2f2 !important;
+  color: #ef4444 !important;
   font-weight: bold;
-}
-
-.empty-cell {
-  background-color: #f8fafc;
-  color: #94a3b8;
-  text-align: center;
-  font-style: italic;
-}
-
-/* 과목별 파스텔 보더 칩 스타일 */
-.schedule-table td[class^="course-"] {
-  transition: all 0.2s ease;
-  width: 17.6%; /* 월~금 5일 균등 분할 */
-}
-
-.schedule-table td[class^="course-"]:hover {
-  filter: brightness(0.97);
-}
-
-.course-default {
-  border-left: 4px solid #cbd5e1 !important;
-  background-color: #f8fafc;
-}
-
-.course-git {
-  border-left: 4px solid #6366f1 !important;
-  background-color: #f5f3ff;
-}
-
-.course-web {
-  border-left: 4px solid #3b82f6 !important;
-  background-color: #eff6ff;
-}
-
-.course-python {
-  border-left: 4px solid #10b981 !important;
-  background-color: #ecfdf5;
-}
-
-.course-statistics {
-  border-left: 4px solid #8b5cf6 !important;
-  background-color: #faf5ff;
-}
-
-.course-prompt {
-  border-left: 4px solid #ec4899 !important;
-  background-color: #fdf2f8;
-}
-
-.course-smart-data {
-  border-left: 4px solid #f59e0b !important;
-  background-color: #fffbeb;
-}
-
-.course-transformer {
-  border-left: 4px solid #e11d48 !important;
-  background-color: #fff1f2;
-}
-
-.course-java {
-  border-left: 4px solid #14b8a6 !important;
-  background-color: #f0fdfa;
-}
-
-.course-msa {
-  border-left: 4px solid #06b6d4 !important;
-  background-color: #ecfeff;
-}
-
-.course-sllm {
-  border-left: 4px solid #f43f5e !important;
-  background-color: #fff1f2;
-}
-
-.course-feature {
-  border-left: 4px solid #84cc16 !important;
-  background-color: #f7fee7;
-}
-
-.course-vue {
-  border-left: 4px solid #4ade80 !important;
-  background-color: #f0fdf4;
-}
-
-.subject-title {
-  font-weight: 700;
-  color: #1e293b;
-  line-height: 1.4;
-  margin-bottom: 6px;
-  word-break: keep-all;
-}
-
-.teacher-name {
-  font-size: 11.5px;
-  color: #64748b;
-  font-weight: 500;
 }
 
 /* 모바일 전용 반응형 레이아웃 덮어쓰기 */
@@ -1293,9 +1150,11 @@ div[contenteditable="true"]:focus {
     justify-content: center;
   }
   
-  .schedule-table {
+  /* 테이블 가로 스크롤 대응 */
+  table {
     display: block;
-    overflow-x: auto; /* 가로 스크롤 허용 */
+    width: 100% !important;
+    overflow-x: auto;
     white-space: nowrap;
   }
 }
