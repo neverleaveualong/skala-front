@@ -174,7 +174,7 @@ h1 {
   position: relative;
   padding-bottom: 20px;
   margin-bottom: 12px; /* - H1 하단 기본 마진을 28px에서 12px로 축소 */
-  animation: headerFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; /* - 타이틀 등장 애니메이션 장착 */
+  animation: headerFadeIn 2.5s cubic-bezier(0.16, 1, 0.3, 1) both; /* - 타이틀 등장 애니메이션 장착 (2.5초로 연장하여 시각적 확인 극대화) */
 }
 
 /* - 헤더에 제목만 단독으로 존재할 경우(바로가기 메뉴가 없는 경우) 쓸데없는 하단 마진 제거 */
