@@ -21,42 +21,124 @@
       <h1>나의 시간표 (AI 에이전트 교육 과정)</h1>
     </header>
 
+    <!-- 💡 과제 기본 스펙과 가산점용 추가 실습을 분리하기 위한 탭 버튼 배치 -->
+    <div class="timetable-tabs">
+      <button class="tab-btn active" data-tab="basic">과제 제출용 시간표 (기본 셀 병합 실습)</button>
+      <button class="tab-btn" data-tab="dynamic">23주차 실시간 일정 검색기 (Excel 연동 추가 실습)</button>
+    </div>
+
     <main>
-      <!-- 💡 주차 선택 네비게이션 및 반 선택 드롭다운 컨트롤 배치 -->
-      <div class="schedule-controls">
-        <div class="control-group">
-          <label for="class-select">🏫 학습 반 선택: </label>
-          <select id="class-select" class="class-dropdown">
-            <option value="1반">201호 (1반)</option>
-            <option value="2반">202호 (2반)</option>
-            <option value="3반">204호 (3반)</option>
-            <option value="4반">205호 (4반)</option>
-          </select>
-        </div>
-        
-        <div class="navigation-group">
-          <button id="prev-week-btn" class="nav-btn">◀ 이전 주</button>
-          <span id="week-label" class="week-label-text">제 1 주차</span>
-          <button id="next-week-btn" class="nav-btn">다음 주 ▶</button>
-        </div>
+      <!-- 1. [과제 기본 요건] 정적 colspan/rowspan 테이블 영역 -->
+      <div id="tab-basic" class="tab-content active">
+        <table border="1" width="100%" cellpadding="10" cellspacing="0">
+          <thead>
+            <tr>
+              <th>시간</th>
+              <th>월요일</th>
+              <th>화요일</th>
+              <th>수요일</th>
+              <th>목요일</th>
+              <th>금요일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 오전 일정 -->
+            <tr>
+              <td>09:00 ~ 10:00</td>
+              <td class="course-statistics">데이터 분석 개요 및 기초통계</td>
+              <td rowspan="3" class="course-python">데이터 분석을 위한 Python 이해</td>
+              <td rowspan="2" class="course-statistics">데이터 분석 개요 및 기초통계</td>
+              <td rowspan="3" class="course-smart-data">스마트 데이터 이해 및 활용</td>
+              <td rowspan="2" class="course-transformer">LLM과 Transformer 아키텍처</td>
+            </tr>
+            <tr>
+              <td>10:00 ~ 11:00</td>
+              <td rowspan="2" class="course-prompt">Prompt 설계와 Context</td>
+            </tr>
+            <tr>
+              <td>11:00 ~ 12:00</td>
+              <td class="course-prompt">Prompt 설계와 Context</td>
+              <td class="course-python">데이터 분석을 위한 Python 이해</td>
+            </tr>
+    
+            <!-- 점심시간 -->
+            <tr>
+              <td>12:00 ~ 13:00</td>
+              <td colspan="5" align="center">점심시간 🍱</td>
+            </tr>
+    
+            <!-- 오후 일정 -->
+            <tr>
+              <td>13:00 ~ 14:00</td>
+              <td rowspan="3" class="course-transformer">LLM과 Transformer 아키텍처</td>
+              <td rowspan="2" class="course-smart-data">스마트 데이터 이해 및 활용</td>
+              <td class="course-statistics">데이터 분석 개요 및 기초통계</td>
+              <td rowspan="3" class="course-smart-data">스마트 데이터 이해 및 활용</td>
+              <td class="course-prompt">Prompt 설계와 Context</td>
+            </tr>
+            <tr>
+              <td>14:00 ~ 15:00</td>
+              <td rowspan="2" class="course-python">데이터 분석을 위한 Python 이해</td>
+              <td rowspan="2" class="course-transformer">LLM과 Transformer 아키텍처</td>
+            </tr>
+            <tr>
+              <td>15:00 ~ 16:00</td>
+              <td class="course-prompt">Prompt 설계와 Context</td>
+            </tr>
+    
+            <!-- 일과 종료 후 -->
+            <tr>
+              <td>16:00 ~ 17:00</td>
+              <td rowspan="2" class="course-python">데이터 분석을 위한 Python 이해</td>
+              <td class="course-prompt">Prompt 설계와 Context</td>
+              <td rowspan="2" class="course-smart-data">스마트 데이터 이해 및 활용</td>
+              <td rowspan="2" class="course-transformer">LLM과 Transformer 아키텍처</td>
+              <td rowspan="2" class="course-project">팀 프로젝트 종합 발표</td>
+            </tr>
+            <tr>
+              <td>17:00 ~ 18:00</td>
+              <td>자율 토론 및 피드백</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <!-- 동적으로 랜더링되는 시간표 테이블 -->
-      <table border="1" width="100%" cellpadding="10" cellspacing="0" class="schedule-table">
-        <thead>
-          <tr id="schedule-table-header">
-            <th>교시 / 시간</th>
-            <th>월요일</th>
-            <th>화요일</th>
-            <th>수요일</th>
-            <th>목요일</th>
-            <th>금요일</th>
-          </tr>
-        </thead>
-        <tbody id="schedule-table-body">
-          <!-- JS 모듈을 통해 주차별 날짜에 맞춰 동적으로 삽입됩니다. -->
-        </tbody>
-      </table>
+      <!-- 2. [추가 실습 요건] 동적 엑셀 연동 시간표 영역 -->
+      <div id="tab-dynamic" class="tab-content">
+        <div class="schedule-controls">
+          <div class="control-group">
+            <label for="class-select">🏫 학습 반 선택: </label>
+            <select id="class-select" class="class-dropdown">
+              <option value="1반">201호 (1반)</option>
+              <option value="2반">202호 (2반)</option>
+              <option value="3반">204호 (3반)</option>
+              <option value="4반">205호 (4반)</option>
+            </select>
+          </div>
+          
+          <div class="navigation-group">
+            <button id="prev-week-btn" class="nav-btn">◀ 이전 주</button>
+            <span id="week-label" class="week-label-text">제 1 주차</span>
+            <button id="next-week-btn" class="nav-btn">다음 주 ▶</button>
+          </div>
+        </div>
+
+        <table border="1" width="100%" cellpadding="10" cellspacing="0">
+          <thead>
+            <tr id="schedule-table-header">
+              <th>교시 / 시간</th>
+              <th>월요일</th>
+              <th>화요일</th>
+              <th>수요일</th>
+              <th>목요일</th>
+              <th>금요일</th>
+            </tr>
+          </thead>
+          <tbody id="schedule-table-body">
+            <!-- JS 모듈을 통해 주차별 날짜에 맞춰 동적으로 삽입됩니다. -->
+          </tbody>
+        </table>
+      </div>
     </main>
   </div>
 </body>
