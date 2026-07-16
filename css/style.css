@@ -146,6 +146,18 @@ hr {
   text-decoration: none;
 }
 
+/* - 미션6: 타이틀 로드 시 부드럽게 위에서 아래로 내려오며 나타나는 페이드인 애니메이션 */
+@keyframes headerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 h1 {
   font-size: 2.25rem;
   font-weight: 800;
@@ -157,6 +169,7 @@ h1 {
   position: relative;
   padding-bottom: 20px;
   margin-bottom: 12px; /* - H1 하단 기본 마진을 28px에서 12px로 축소 */
+  animation: headerFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; /* - 타이틀 등장 애니메이션 장착 */
 }
 
 /* - 헤더에 제목만 단독으로 존재할 경우(바로가기 메뉴가 없는 경우) 쓸데없는 하단 마진 제거 */
