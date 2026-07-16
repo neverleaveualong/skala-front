@@ -24,11 +24,16 @@ body {
   letter-spacing: -0.015em;
   font-size: 16px;
   word-break: keep-all;
-  
-  /* 페이지 폭이 늘어나도 1000px로 고정되어 정돈되어 보이게 설정 */
-  max-width: 1000px;
-  margin: 0 auto;
+}
+
+/* 과제 9 (미션 2): 모든 콘텐츠를 감싸고 가운데 정렬하는 컨테이너 스타일 정의 */
+.container {
+  width: 100%;
+  max-width: 1000px; /* 페이지 폭이 늘어나도 1000px로 고정되어 정돈되어 보이게 설정 */
+  margin: 0 auto;    /* 화면 정중앙 배치 */
   padding: 60px 80px; /* 모니터가 커도 너무 빽빽해 보이지 않게 좌우 패딩을 넓게 줌 */
+  display: flex;
+  flex-direction: column;
 }
 
 /* --- 3. 공통 콘텐츠 레이아웃 카드 구성 (main, aside 등) --- */
