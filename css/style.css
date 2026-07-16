@@ -10,6 +10,11 @@
   padding: 0;
 }
 
+/* - 글로벌 호버 트랜지션 안전망: 모든 링크와 버튼의 페이드 효과를 강제로 부드럽게 일원화 */
+a, button, input[type="submit"], input[type="reset"] {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
 /* --- 2. 기본 문서 환경 및 정렬 (CSS 기반 화면 중앙 정렬) --- */
 body {
   font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
