@@ -65,20 +65,35 @@
           <option value="">-- 도시 선택 --</option>
           <option value="current">📍 내 현재 위치 (GPS)</option>
           <option value="seoul">서울 (대한민국)</option>
+          <option value="busan">부산 (대한민국)</option>
+          <option value="jeju">제주 (대한민국)</option>
           <option value="tokyo">도쿄 (일본)</option>
+          <option value="london">런던 (영국)</option>
+          <option value="paris">파리 (프랑스)</option>
+          <option value="newyork">뉴욕 (미국)</option>
+          <option value="sydney">시드니 (호주)</option>
           <option value="hamilton">해밀턴 (뉴질랜드)</option>
           <option value="danang">다낭 (베트남)</option>
           <option value="hongkong">홍콩 (중국)</option>
         </select>
         
         <div id="weather-box">
-          <div class="weather-info">
-            <h4 id="weather-city-name">📍 도시 미선택</h4>
-            <p class="coordinates" id="weather-coordinates">위도 및 경도 좌표 대기 중</p>
-            <div class="weather-metrics">
-              <p>🌈 <strong>날씨 상태</strong>: <span class="state" id="weather-state">-</span></p>
-              <p>🌡️ <strong>현재 온도</strong>: <span class="temp" id="weather-temp">-</span></p>
-              <p>💧 <strong>상대 습도</strong>: <span class="humidity" id="weather-humidity">-</span></p>
+          <!-- 1. 로딩 표시 영역 (기본 숨김) -->
+          <div id="weather-loading" class="weather-loading-container">
+            <div class="spinner"></div>
+            <p>실시간 날씨 로딩 중... ⏳</p>
+          </div>
+
+          <!-- 2. 실제 날씨 표시 영역 -->
+          <div id="weather-display" class="weather-display-container">
+            <div class="weather-info">
+              <h4 id="weather-city-name">📍 도시 미선택</h4>
+              <p class="coordinates" id="weather-coordinates">위도 및 경도 좌표 대기 중</p>
+              <div class="weather-metrics">
+                <p>🌈 <strong>날씨 상태</strong>: <span class="state" id="weather-state">-</span></p>
+                <p>🌡️ <strong>현재 온도</strong>: <span class="temp" id="weather-temp">-</span></p>
+                <p>💧 <strong>상대 습도</strong>: <span class="humidity" id="weather-humidity">-</span></p>
+              </div>
             </div>
           </div>
         </div>
