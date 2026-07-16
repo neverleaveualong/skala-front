@@ -1159,46 +1159,4 @@ div[contenteditable="true"]:focus {
   }
 }
 
-/* --- 시간표 탭 메뉴 스타일링 --- */
-.timetable-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 8px;
-}
 
-.tab-btn {
-  padding: 10px 20px;
-  border-radius: 8px 8px 0 0;
-  border: 1px solid transparent;
-  background-color: transparent;
-  color: #64748b;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-bottom: -10px;
-  outline: none;
-}
-
-.tab-btn:hover {
-  color: #0f172a;
-  background-color: #f1f5f9;
-}
-
-.tab-btn.active {
-  color: #E60024;
-  border: 1px solid #cbd5e1;
-  border-bottom-color: #ffffff;
-  background-color: #ffffff;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-  animation: fadeIn 0.4s ease-out;
-}

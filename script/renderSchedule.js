@@ -197,20 +197,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 최초 렌더링
   renderTimetable();
-
-  // 7. 탭 전환 처리 핸들러 추가
-  const tabBtns = document.querySelectorAll(".tab-btn");
-  const tabContents = document.querySelectorAll(".tab-content");
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const tabId = btn.getAttribute("data-tab");
-      
-      tabBtns.forEach(b => b.classList.remove("active"));
-      tabContents.forEach(c => c.classList.remove("active"));
-      
-      btn.classList.add("active");
-      document.getElementById(`tab-${tabId}`).classList.add("active");
-    });
-  });
 });
