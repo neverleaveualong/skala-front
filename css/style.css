@@ -193,6 +193,11 @@ aside button:active {
   margin-bottom: 0;
 }
 
+#weather-box .weather-metrics .state {
+  color: #0f172a; /* 상태는 어두운 Charcoal 색상 */
+  font-weight: 700;
+}
+
 #weather-box .weather-metrics .temp {
   color: #E60024; /* 온도는 SK Red */
   font-weight: 700;

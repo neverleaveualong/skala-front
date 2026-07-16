@@ -10,17 +10,34 @@ const cityCoordinates = {
   hongkong: { name: "홍콩 (중국)", lat: 22.3193, lon: 114.1694 }
 };
 
+// 💡 Open-Meteo 기상 코드를 한국어 직관 설명 및 이모지로 매핑하는 해독기 함수
+function getWeatherState(code) {
+  if (code === 0) return "☀️ 맑음";
+  if ([1, 2, 3].includes(code)) return "⛅ 구름 조금";
+  if ([45, 48].includes(code)) return "🌫️ 안개";
+  if ([51, 53, 55, 56, 57].includes(code)) return "🌧️ 이슬비";
+  if ([61, 63, 65, 66, 67].includes(code)) return "🌧️ 비";
+  if ([71, 73, 75, 77].includes(code)) return "❄️ 눈";
+  if ([80, 81, 82].includes(code)) return "🌦️ 소나기";
+  if ([95, 96, 99].includes(code)) return "⛈️ 뇌우";
+  return "🌈 날씨 분석 완료";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const citySelect = document.getElementById("city-select");
   const cityNameEl = document.getElementById("weather-city-name");
   const coordinatesEl = document.getElementById("weather-coordinates");
   const tempEl = document.getElementById("weather-temp");
   const humidityEl = document.getElementById("weather-humidity");
+  const stateEl = document.getElementById("weather-state");
 
-  if (!citySelect || !cityNameEl || !coordinatesEl || !tempEl || !humidityEl) return;
+  if (!citySelect || !cityNameEl || !coordinatesEl || !tempEl || !humidityEl || !stateEl) return;
 
   citySelect.addEventListener("change", async (event) => {
     const selectedKey = event.target.value;
+
+    // 💡 선택한 도시 설정을 브라우저의 로컬 스토리지(localStorage)에 동기화 보관
+    localStorage.setItem("selectedCity", selectedKey);
 
     // 1. 선택 초기화 (아무것도 선택 안 했을 때)
     if (!selectedKey) {
@@ -28,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       coordinatesEl.textContent = "위도 및 경도 좌표 대기 중";
       tempEl.textContent = "-";
       humidityEl.textContent = "-";
+      stateEl.textContent = "-";
       return;
     }
 
@@ -37,11 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
       coordinatesEl.textContent = "GPS 좌표 신호 수신 중...";
       tempEl.innerHTML = "<span class='loading'>로딩 중... ⏳</span>";
       humidityEl.innerHTML = "<span class='loading'>로딩 중... ⏳</span>";
+      stateEl.innerHTML = "<span class='loading'>로딩 중... ⏳</span>";
 
       if (!navigator.geolocation) {
         coordinatesEl.textContent = "위치 서비스 미지원 브라우저";
         tempEl.textContent = "⚠️ 에러";
         humidityEl.textContent = "⚠️ 에러";
+        stateEl.textContent = "⚠️ 에러";
         return;
       }
 
@@ -55,15 +75,18 @@ document.addEventListener("DOMContentLoaded", () => {
           const weatherData = await fetchWeather(lat, lon);
           tempEl.textContent = `${weatherData.temperature}°C`;
           humidityEl.textContent = `${weatherData.humidity}%`;
+          stateEl.textContent = getWeatherState(weatherData.weatherCode);
         } catch (error) {
           tempEl.textContent = "⚠️ 에러";
           humidityEl.textContent = "⚠️ 에러";
+          stateEl.textContent = "⚠️ 에러";
         }
       }, (error) => {
         console.error("Geolocation error:", error);
         coordinatesEl.textContent = "위치 권한 차단됨";
         tempEl.textContent = "⚠️ 제한됨";
         humidityEl.textContent = "⚠️ 제한됨";
+        stateEl.textContent = "⚠️ 제한됨";
       });
       return;
     }
@@ -77,15 +100,25 @@ document.addEventListener("DOMContentLoaded", () => {
       coordinatesEl.textContent = `위도: ${lat}° / 경도: ${lon}°`;
       tempEl.innerHTML = "<span class='loading'>로딩 중... ⏳</span>";
       humidityEl.innerHTML = "<span class='loading'>로딩 중... ⏳</span>";
+      stateEl.innerHTML = "<span class='loading'>로딩 중... ⏳</span>";
 
       try {
         const weatherData = await fetchWeather(lat, lon);
         tempEl.textContent = `${weatherData.temperature}°C`;
         humidityEl.textContent = `${weatherData.humidity}%`;
+        stateEl.textContent = getWeatherState(weatherData.weatherCode);
       } catch (error) {
         tempEl.textContent = "⚠️ 에러";
         humidityEl.textContent = "⚠️ 에러";
+        stateEl.textContent = "⚠️ 에러";
       }
     }
   });
+
+  // 💡 [화면 복원] 페이지 로드 시 로컬 스토리지에 백업된 지난 선택 기록이 있으면 자동 로드
+  const savedCity = localStorage.getItem("selectedCity");
+  if (savedCity) {
+    citySelect.value = savedCity;
+    citySelect.dispatchEvent(new Event("change")); // 변경 이벤트를 인위적으로 트리거하여 날씨 즉시 조회
+  }
 });
