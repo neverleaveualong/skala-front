@@ -344,20 +344,37 @@
 
 ---
 
-### 📌 과제 12. JavaScript 기초 실습 (Up-Down / 성적 계산기 / 소지품)
+### 📌 과제 14. Up-Down 숫자 맞추기 게임
 *   **구현 파일:** 
     *   [`html/index.html`](file:///Users/paul/skala-work/SKALA-FRONT/html/index.html)
     *   [`script/unDown.js`](file:///Users/paul/skala-work/SKALA-FRONT/script/unDown.js)
-    *   [`script/grade.js`](file:///Users/paul/skala-work/SKALA-FRONT/script/grade.js)
-    *   [`script/bag.js`](file:///Users/paul/skala-work/SKALA-FRONT/script/bag.js)
 *   **학습 내용:**
-    *   **Up-Down 게임**: `Math.random()`으로 무작위 비밀 숫자를 생성하고, `while(true)` 루프 안에서 `prompt()` 입력을 비교하여 정답 시 `break`로 탈출하는 게임 루프를 학습했습니다.
-    *   **성적 계산기**: 과목명이 담긴 배열(`subjects`)을 순회하며 연속 점수를 입력받아 총점 및 평균을 구하고, 삼항 연산자를 통해 합격 여부를 연산하는 반복문 실습을 수행했습니다.
-    *   **가방 속 소지품**: JavaScript 객체(Object) 배열을 정의하고, 이를 `for` 반복문으로 순회하여 속성을 추출·가공하는 객체 다루기 기본을 훈련했습니다.
+    *   `Math.random()`과 `Math.floor()` 함수를 조합하여 1부터 50 사이의 임의의 비밀 숫자를 생성하도록 했습니다.
+    *   `prompt()` 대화 상자를 통해 사용자 입력을 반복적으로 받고, `while(true)` 무한 루프 내에서 조건문을 통해 Up/Down 힌트를 알림창(`alert`)으로 제공했습니다.
+    *   사용자가 숫자가 아닌 값을 입력하거나 취소를 눌렀을 때의 예외 처리를 반영하고, 정답을 맞힌 순간 시도 횟수를 출력하며 `break`로 반복문을 강제 탈출하도록 구현했습니다.
 
 ---
 
-### 📌 과제 13. 실시간 날씨 - DOM/이벤트
+### 📌 과제 15. 성적 계산기
+*   **구현 파일:** 
+    *   [`script/grade.js`](file:///Users/paul/skala-work/SKALA-FRONT/script/grade.js)
+*   **학습 내용:**
+    *   `["HTML", "CSS", "JavaScript"]` 과목명이 담긴 배열을 미리 선언하고, `for` 반복문으로 배열의 길이에 맞춰 순회하도록 제어했습니다.
+    *   각 과목의 점수를 연속으로 입력받아 총합(`total`)에 합산하였으며, 예외적인 평점(100 초과, 0 미만, 문자값 등) 입력 시 인덱스 `i`를 1 감소시켜 재입력을 유도하는 예외 복구를 구현했습니다.
+    *   평균 점수를 연산하여 60점 이상이면 '합격', 미만이면 '불합격' 판정 결과를 알림창(`alert`)으로 시각화했습니다.
+
+---
+
+### 📌 과제 16. 내 가방 보기 (JavaScript Object)
+*   **구현 파일:** 
+    *   [`script/bag.js`](file:///Users/paul/skala-work/SKALA-FRONT/script/bag.js)
+*   **학습 내용:**
+    *   가방 속 소지품(물품명 `name`, 수량 `count`)을 키-값 쌍을 지닌 JavaScript 객체(Object)들의 배열(`myBag`)로 구조화하여 설계했습니다.
+    *   `for` 반복문을 통해 각 인덱스의 소지품 객체 속성을 순회하여 화면 알림창(`alert`)과 브라우저 개발자 도구 콘솔(`console.log`)에 순차적으로 포맷에 맞추어 출력했습니다.
+
+---
+
+### 📌 과제 17. 실시간 날씨 - DOM/이벤트
 *   **구현 파일:** 
     *   [`html/index.html`](file:///Users/paul/skala-work/SKALA-FRONT/html/index.html)
     *   [`script/realtimeInfo.js`](file:///Users/paul/skala-work/SKALA-FRONT/script/realtimeInfo.js)
@@ -368,7 +385,7 @@
 
 ---
 
-### 📌 과제 14. 실시간 날씨 - 비동기 호출
+### 📌 과제 18. 실시간 날씨 - 비동기 호출
 *   **구현 파일:** 
     *   [`script/weatherAPI.js`](file:///Users/paul/skala-work/SKALA-FRONT/script/weatherAPI.js)
     *   [`script/realtimeInfo.js`](file:///Users/paul/skala-work/SKALA-FRONT/script/realtimeInfo.js)
@@ -379,7 +396,7 @@
 
 ---
 
-### 📌 과제 15. 실시간 날씨 - 모듈분리
+### 📌 과제 19. 실시간 날씨 - 모듈분리
 *   **구현 파일:** 
     *   [`html/index.html`](file:///Users/paul/skala-work/SKALA-FRONT/html/index.html)
     *   [`script/weatherAPI.js`](file:///Users/paul/skala-work/SKALA-FRONT/script/weatherAPI.js)
