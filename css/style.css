@@ -55,12 +55,157 @@ main {
 
 aside {
   background-color: #ffffff;
-  padding: 28px;
+  padding: 24px; /* 사이드바의 좁은 폭을 고려하여 좌우 패딩 최적화 */
   border-radius: 16px;
-  border: 1px solid #cbd5e1; /* 사이드바 테두리는 조금 더 회색으로 연하게 처리 */
+  border: 1px solid #e2e8f0; /* main과 동일한 부드러운 테두리선 */
   margin-bottom: 24px;
   font-size: 14.5px;
-  box-shadow: 0 2px 12px -1px rgba(15, 23, 42, 0.02);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03); /* main과 동일한 부드러운 그림자 */
+  
+  /* 데스크톱에서 main 높이에 맞춰 늘어날 때 내부 콘텐츠를 수직 중앙 정렬 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+aside h3 {
+  margin-top: 0; /* flex 중앙 정렬 오차 방지를 위해 위쪽 마진 초기화 */
+  text-align: center;
+}
+
+/* --- SK AX 스타일의 JavaScript 실습 버튼 정의 --- */
+aside button {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, #E60024, #FF5C00); /* SK AX 그라데이션 적용 */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(230, 0, 36, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+}
+
+aside button:hover {
+  transform: translateY(-2px); /* 호버 시 위로 약간 들리는 효과 */
+  box-shadow: 0 6px 16px rgba(230, 0, 36, 0.25);
+  filter: brightness(1.08);
+}
+
+aside button:active {
+  transform: translateY(0); /* 클릭했을 때 꾹 눌리는 물리 효과 */
+}
+
+/* --- 실시간 날씨 위젯 스타일링 --- */
+.weather-widget {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #f8fafc;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.weather-select:focus {
+  border-color: #E60024; /* SK Red 색상 적용 */
+  box-shadow: 0 0 0 3px rgba(230, 0, 36, 0.1);
+}
+
+#weather-box {
+  margin-top: 16px;
+  background-color: #f8fafc;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 13.5px;
+  border: 1px solid #f1f5f9;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#weather-box .placeholder-msg {
+  color: #94a3b8;
+  font-style: italic;
+  margin: 0;
+}
+
+#weather-box .weather-info {
+  width: 100%;
+  text-align: left;
+}
+
+#weather-box .weather-info h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+#weather-box .weather-info .coordinates {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+#weather-box .weather-info .loading {
+  color: #E60024;
+  font-weight: 600;
+  text-align: center;
+  margin: 12px 0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+#weather-box .weather-metrics {
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+#weather-box .weather-metrics p {
+  margin-bottom: 6px;
+  color: #475569;
+  font-size: 13.5px;
+}
+
+#weather-box .weather-metrics p:last-child {
+  margin-bottom: 0;
+}
+
+#weather-box .weather-metrics .temp {
+  color: #E60024; /* 온도는 SK Red */
+  font-weight: 700;
+}
+
+#weather-box .weather-metrics .humidity {
+  color: #FF5C00; /* 습도는 SK Orange */
+  font-weight: 700;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 aside ul {
@@ -135,7 +280,6 @@ hr {
   border-radius: 0 !important;
   box-shadow: none !important;
   margin: 0 !important;
-  style: vertical-align: middle;
 }
 
 /* 뒤로가기 링크 스타일 */
@@ -703,17 +847,17 @@ div[contenteditable="true"]:focus {
 .content-layout {
   display: flex;
   gap: 32px;
-  align-items: flex-start;
+  align-items: stretch; /* 데스크톱에서 main과 aside의 높이가 같게 정렬 */
   margin-bottom: 24px;
 }
 
 .content-layout main {
-  flex: 3; /* 본문이 더 많은 너비(75%)를 차지하도록 설정 */
+  flex: 2.2; /* 본문 비율 조절 (약 69%) */
   margin-bottom: 0 !important;
 }
 
 .content-layout aside {
-  flex: 1; /* 사이드바는 남은 영역(25%)을 차지하도록 설정 */
+  flex: 1; /* 사이드바 비율 조절 (약 31%)로 실습 버튼 텍스트 줄바꿈 방지 */
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -760,11 +904,84 @@ div[contenteditable="true"]:focus {
   border-color: #cbd5e1;
 }
 
+/* --- 하단 추가 학습 내용 영역 카드 스타일링 --- */
+.additional-learning {
+  background-color: #ffffff;
+  padding: 24px 32px; /* main과 동일한 패딩으로 일치 */
+  border-radius: 16px;
+  border: 1px solid #e2e8f0; /* main과 동일한 부드러운 테두리선 */
+  margin-bottom: 24px;
+  font-size: 14.5px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03); /* main과 동일한 부드러운 그림자 */
+}
+
+.additional-learning h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.additional-learning ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 16px;
+}
+
+.additional-learning li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.additional-learning li::before {
+  content: '■';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: #E60024; /* SK Red 색상 적용 */
+  font-size: 10px;
+}
+
 /* 미션5: 스마트폰 크기 대응 (786px 이하 반응형 웹 디자인) */
 @media (max-width: 786px) {
   /* 1) index.html: 본문이랑 사이드바를 세로 1줄로 정렬 */
   .content-layout {
     flex-direction: column;
+    align-items: stretch; /* 모바일(1열) 시 자식 요소들이 가로 전체 너비를 채우도록 설정 */
+  }
+
+  /* 모바일(1열) 환경에서 사이드바 내부 실습 버튼들을 가로 행(Row) 정렬 */
+  aside {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 24px !important;
+  }
+
+  aside h3 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  aside button {
+    flex: 1;
+    min-width: 140px;
+    margin-top: 0 !important; /* 모바일에서는 위쪽 여백 제거 */
+  }
+
+  /* 모바일(1열) 환경에서 날씨 위젯이 가로 전체를 차지하며 세로 배치되도록 설정 */
+  .weather-widget {
+    width: 100%;
+    margin-top: 16px;
   }
   
   /* 1) index.html: 메뉴들도 세로 1줄로 배치 */
