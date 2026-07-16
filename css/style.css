@@ -289,19 +289,21 @@ nav {
 
 nav ul {
   list-style: none;
+  display: flex; /* - 바로가기 버튼들을 가로로 정렬하기 위해 Flexbox 장착 */
+  gap: 12px;
+  flex-wrap: wrap; /* - 해상도가 낮아지면 자동으로 아래로 흐르도록 감쌈 */
+  padding-left: 0;
 }
 
 nav li {
-  margin-bottom: 10px; /* - 메뉴 항목 사이 간격 설정 */
-}
-
-nav li:last-child {
   margin-bottom: 0;
+  flex: 1; /* - 가로 폭을 균등하게 채우도록 확장 */
+  min-width: 150px;
 }
 
 nav a {
   display: block;
-  padding: 12px 18px;
+  padding: 12px 14px;
   border-radius: 8px;
   font-size: 14.5px;
   color: #475569;
@@ -311,6 +313,7 @@ nav a {
   border-top: none !important;
   border-right: none !important;
   border-bottom: none !important;
+  text-align: center; /* - 가로 칩 형태이므로 글자를 가운데 정렬 */
   padding-left: 16px;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -320,7 +323,7 @@ nav a:hover {
   background-color: #fff1f2; /* - 마우스 호버 시 은은한 SK Red 틴트 소프트 핑크 적용 */
   color: #E60024;            /* - 텍스트 SK Red 전환 */
   border-left-color: #E60024 !important; /* - 호버 시 왼쪽 가이드 바를 선명한 SK Red로 변경 */
-  padding-left: 22px;        /* - 마이크로 슬라이딩 우측 이동 피드백 */
+  padding-left: 20px;        /* - 마이크로 슬라이딩 우측 이동 피드백 */
   font-weight: 600;
   text-decoration: none;
 }
@@ -649,8 +652,11 @@ div[contenteditable="true"]:focus {
 .trip-card img,
 .trip-card video {
   display: block;
-  margin: 20px auto 0 auto; /* - 카드 내 사진/영상을 정중앙에 정밀 배치하고 윗간격 설정 */
-  max-width: 100%;
+  width: 100%;
+  height: 150px; /* - 바둑판 그리드 안에서 일관된 비율을 유지하도록 고정 높이 지정 */
+  object-fit: cover; /* - 이미지/비디오 비율 왜곡 방지 및 크롭 정렬 */
+  border-radius: 8px; /* - 미디어를 둥글게 다듬어 세련된 카드 외형 구현 */
+  margin: 16px auto 0 auto; /* - 카드 내 사진/영상을 정중앙에 정밀 배치하고 윗간격 설정 */
 }
 
 /* - 여행지 방문일자 뱃지 스타일 */
@@ -664,4 +670,84 @@ div[contenteditable="true"]:focus {
   border-radius: 6px;
   margin-bottom: 12px;
   letter-spacing: 0.05em;
+}
+
+/* --- 11. 신규 레이아웃 미션 (Flexbox & Grid 배치) --- */
+
+/* - Index.html 전용 메인 & 사이드바 가로 배치 레이아웃 */
+.content-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.content-layout main {
+  flex: 3; /* - 메인 영역이 더 넓은 공간을 차지하도록 설정 */
+  margin-bottom: 0 !important;
+}
+
+.content-layout aside {
+  flex: 1; /* - 사이드바 영역이 좁은 33% 공간을 차지하도록 설정 */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* - myTrip.html 전용 3열 바둑판 Grid 레이아웃 */
+.trip-grid-container {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  background-color: transparent !important; /* - 격자형 배치에 어울리도록 기본 main 패널 배경 제거 */
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.trip-grid-container section {
+  background-color: #ffffff;
+  padding: 24px 28px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03);
+}
+
+.trip-grid-container .trip-card {
+  margin: 16px 0 0 0 !important; /* - 섹션 박스 내부 여백과 겹치지 않게 카드 마진 최소화 */
+  border: none !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.trip-grid-container .trip-card:hover {
+  transform: none !important; /* - 섹션 카드 전체가 호버 효과를 대신 가지므로 중복 변형 억제 */
+}
+
+.trip-grid-container section {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.trip-grid-container section:hover {
+  background-color: #ffffff;
+  transform: translateY(-4px); /* - 바둑판 카드 전체가 살짝 떠오르는 모던한 인터랙션 */
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  border-color: #cbd5e1;
+}
+
+/* - 모바일 반응형 뷰포트 지원 (미디어 쿼리) */
+@media (max-width: 900px) {
+  .trip-grid-container {
+    grid-template-columns: repeat(2, 1fr) !important; /* - 태블릿 가로 크기에서는 2열로 자동 압축 */
+  }
+}
+
+@media (max-width: 640px) {
+  .content-layout {
+    flex-direction: column; /* - 모바일 폰 해상도에서는 메인과 사이드바를 세로로 적층 */
+  }
+  
+  .trip-grid-container {
+    grid-template-columns: 1fr !important; /* - 모바일 폰 해상도에서는 1열로 떨어지도록 유연하게 전환 */
+  }
 }
