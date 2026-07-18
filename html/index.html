@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome SKALA</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css?v=20260719-01">
+  <script src="../script/themeLoader.js"></script>
   <script src="../script/unDown.js"></script>
   <script src="../script/grade.js"></script>
   <script src="../script/bag.js"></script>
   <script type="module" src="../script/realtimeInfo.js"></script>
+  <script type="module" src="../script/advancedDashboard.js"></script>
 </head>
 <body>
   <div class="container">
@@ -101,6 +103,67 @@
     </aside>
   </div>
 
+  <!-- 💡 고도화 기능 3종 대시보드 영역 -->
+  <section class="advanced-dashboard-section">
+    <h2>🚀 SKALA-FRONT 통합 고도화 대시보드</h2>
+    <div class="advanced-grid">
+      <!-- [기능 1] 실시간 테마 / 다크모드 컨트롤러 -->
+      <div class="advanced-card">
+        <h3>🎨 테마 & 다크모드 설정</h3>
+        <div class="theme-controller-widget">
+          <div class="theme-row">
+            <span>브랜드 컬러 테마 선택</span>
+            <div class="theme-btn-group">
+              <button class="theme-btn" data-theme="sk-red">SK Red</button>
+              <button class="theme-btn" data-theme="mint">Mint</button>
+              <button class="theme-btn" data-theme="orange">Orange</button>
+            </div>
+          </div>
+          <div class="theme-row" style="margin-top: 8px;">
+            <span>배경 모드 선택</span>
+            <button id="dark-mode-toggle" class="theme-toggle-btn">🌙 다크 모드</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- [기능 2] GitHub 실시간 커밋 로그 위젯 -->
+      <div class="advanced-card">
+        <h3>📦 GitHub 실시간 커밋 로그</h3>
+        <div class="commit-widget">
+          <div id="commit-list" class="commit-container">
+            <!-- JS 비동기 호출을 통해 커밋 정보가 렌더링됩니다. -->
+          </div>
+          <button id="refresh-commits-btn" class="kanban-btn" style="margin-top: 12px; width: 100%;">🔄 로그 갱신</button>
+        </div>
+      </div>
+
+      <!-- [기능 3] HTML5 Drag & Drop 칸반 보드 -->
+      <div class="advanced-card">
+        <h3>📋 학습용 미니 칸반 보드</h3>
+        <div class="kanban-widget">
+          <div class="kanban-input-group">
+            <input type="text" id="new-task-input" class="kanban-input" placeholder="새 태스크 입력..." maxlength="25">
+            <button id="add-task-btn" class="kanban-btn">추가</button>
+          </div>
+          <div class="kanban-columns">
+            <div class="kanban-col">
+              <h4>할 일 (To Do)</h4>
+              <div id="todo-list" class="kanban-list"></div>
+            </div>
+            <div class="kanban-col">
+              <h4>진행 (Doing)</h4>
+              <div id="doing-list" class="kanban-list"></div>
+            </div>
+            <div class="kanban-col">
+              <h4>완료 (Done)</h4>
+              <div id="done-list" class="kanban-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 하단 추가 학습 내용 영역 (가로 전체 너비 확보 및 불균형 레이아웃 해소) -->
   <section class="additional-learning">
     <h3>추가로 학습한 HTML, CSS, JavaScript</h3>
@@ -117,6 +180,9 @@
       <li><strong>모던 CSS 박스 모델 응용</strong>: 테두리 병합(<code>border-collapse</code>) 및 테이블 셀 병합(<code>rowspan</code>) 렌더링 오류를 개선한 시간표 그리드 설계</li>
       <li><strong>부드러운 호버 트랜지션</strong>: 마우스 올렸을 때 배경색 등이 서서히 바뀌도록 transition 설정</li>
       <li><strong>JavaScript 기본 동작 및 연동</strong>: <code>prompt()</code>와 <code>while(true)</code> 루프/<code>break</code>를 활용한 숫자 맞추기(Up-Down) 게임, <code>for</code> 반복문을 활용한 과목 평균 성적 계산기, <code>JavaScript Object</code>와 <code>array</code>를 순회하여 출력하는 가방 속 소지품 연동 실습</li>
+      <li><strong>실시간 비동기 연동 고도화 (GitHub API)</strong>: <code>fetch</code> 및 <code>async/await</code> 비동기 모듈(ESM) 통신을 확장하여 실제 GitHub 커밋 로그를 실시간 렌더링하는 기법 습득</li>
+      <li><strong>HTML5 Drag & Drop 표준 API 응용</strong>: 드래그 앤 드롭 전용 브라우저 표준 이벤트를 바인딩해 마우스 조작으로 할 일을 분류하는 동적 칸반 보드 구축</li>
+      <li><strong>CSS 변수 동적 스위칭 (Theme Controller)</strong>: 다크모드 및 복수의 브랜드 컬러 테마를 실시간 갱신하고, 사용자 설정을 LocalStorage에 영속 보존하는 테마 스위치 설계</li>
     </ul>
   </section>
 

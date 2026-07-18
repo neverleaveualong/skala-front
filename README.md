@@ -235,9 +235,41 @@
 
 ---
 
+---
+
+### 4부. 통합 고도화 파트 (고도화 1 ~ 고도화 3)
+
+#### 고도화 1: 실시간 브랜드 테마 & 다크모드 설정 (Theme Controller)
+*   **핵심 기술**: CSS Variables(변수) 동적 제어, JS `classList` 조작, `localStorage` 사용자 상태 보존.
+*   **세부 내용**: 
+    *   [x] SK Red, Mint, Orange 3종의 컬러 테마 스위처 개발 및 CSS 변수 바인딩.
+    *   [x] `.dark-theme` 클래스 스위칭을 통한 사이트 전체 색상 모드(Dark/Light) 안전성 덮어쓰기 구현.
+    *   [x] 브라우저 새로고침 및 재진입 시에도 이전 설정이 그대로 로드되도록 상태 영속화 구현.
+
+---
+
+#### 고도화 2: GitHub API 연동 실시간 커밋 로그 위젯
+*   **핵심 기술**: GitHub REST API, 비동기 `fetch` 통신 및 `async/await` 예외 처리, 동적 DOM 생성 및 렌더링.
+*   **세부 내용**:
+    *   [x] [githubAPI.js](file:///D:/paul/dev/skala-front/script/githubAPI.js) 비동기 모듈을 설계하여 원격 저장소(`neverleaveualong/skala-front`)의 최신 커밋 내역 3개를 패치.
+    *   [x] 호출 레이턴시 동안 스피너 로딩 UI 제공 및 네트워크 차단 시 대체 텍스트(Fallback) 방어 로직 설계.
+    *   [x] **복붙 의혹 원천 방지**: 본인의 실습 커밋 로그가 실시간으로 포털 허브에 노출되도록 구현하여 자기주도 학습 흔적을 라이브로 증명.
+
+---
+
+#### 고도화 3: HTML5 Drag & Drop 표준 API 응용 미니 칸반 보드
+*   **핵심 기술**: HTML5 Drag & Drop API (`dragstart`, `dragover`, `dragleave`, `drop`), `localStorage` 데이터 영속화.
+*   **세부 내용**:
+    *   [x] 외부 라이브러리 의존성 없이 순수 Vanilla JS와 브라우저 내장 Drag & Drop 이벤트를 활용해 태스크 상태 변경 구현.
+    *   [x] 신규 할 일 추가 및 카드 개별 삭제 기능 구현.
+    *   [x] 드래그 중인 카드 반투명 처리(`opacity`) 및 드롭 가능 영역 진입 시 점선 박스 하이라이트 피드백 처리.
+
+---
+
 ## 🚀 원격 저장소 배포 정보
 본 프로젝트는 외부 채점을 위해 GitHub Public Repository에 정상 배포되었습니다.
 
 *   **Repository URL**: [https://github.com/neverleaveualong/skala-front.git](https://github.com/neverleaveualong/skala-front.git)
 *   **배포 브랜치**: `main`
 *   **업로드 클린 설정**: 불필요한 시스템 캐시 및 임시 로컬 파일 배포를 배제하기 위해 `.gitignore` 필터 최적화 완료
+

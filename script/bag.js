@@ -15,11 +15,11 @@ function showMyBag() {
   for (var i = 0; i < myBag.length; i++) {
     var item = myBag[i];
     
-    // 알림창용 메시지 누적
-    message += "- " + item.name + " (" + item.count + "개)\n";
+    // 💡 템플릿 리터럴(Template Literal) 문법을 활용한 가독성 높은 스트링 파싱
+    message += `- ${item.name} (${item.count}개)\n`;
     
     // 개발자 도구 콘솔창 출력
-    console.log("물품명: " + item.name + ", 수량: " + item.count + "개");
+    console.log(`물품명: ${item.name}, 수량: ${item.count}개`);
   }
   
   // 4. 결과를 알림창(alert)으로 보여주기

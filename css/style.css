@@ -16,6 +16,9 @@ a, button, input[type="submit"], input[type="reset"] {
 }
 
 /* --- 2. 기본 문서 환경 및 정렬 (가운데 정렬 설정) --- */
+html {
+  height: 100%;
+}
 body {
   font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: #f8fafc; /* 바탕은 약간 밝은 회색 톤으로 설정 */
@@ -24,6 +27,7 @@ body {
   letter-spacing: -0.015em;
   font-size: 16px;
   word-break: keep-all;
+  min-height: 100vh; /* 화면 높이 전체를 꽉 채우도록 보장 */
 }
 
 /* 과제 9 (미션 2): 모든 콘텐츠를 감싸고 가운데 정렬하는 컨테이너 스타일 정의 */
@@ -1158,5 +1162,609 @@ div[contenteditable="true"]:focus {
     white-space: nowrap;
   }
 }
+
+/* =======================================================
+   💡 추가 학습 및 고도화 기능 3종 세트 스타일 정의
+   ======================================================= */
+
+/* --- 1. 테마 변수 정의 및 컬러 테마 매핑 --- */
+:root {
+  --primary-gradient: linear-gradient(90deg, #E60024, #FF5C00); /* SK AX Red (Default) */
+  --primary-color: #E60024;
+  --bg-color: #f8fafc;
+  --text-color: #334155;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(15, 23, 42, 0.03);
+}
+
+/* 컬러 테마 세부 스키마 */
+body.theme-sk-red {
+  --primary-gradient: linear-gradient(90deg, #E60024, #FF5C00);
+  --primary-color: #E60024;
+}
+
+body.theme-mint {
+  --primary-gradient: linear-gradient(90deg, #0d9488, #0ea5e9);
+  --primary-color: #0d9488;
+}
+
+body.theme-orange {
+  --primary-gradient: linear-gradient(90deg, #ea580c, #f59e0b);
+  --primary-color: #ea580c;
+}
+
+/* 테마 스위처 변경에 영향을 받는 요소들에 CSS 변수 적용 */
+aside button, .nav-btn, .advanced-card h3, .theme-btn.active {
+  background: var(--primary-gradient) !important;
+}
+
+.theme-btn.active {
+  border-color: var(--primary-color) !important;
+}
+
+/* --- 2. 다크 모드 (.dark-theme) 전체 덮어쓰기 (Safe Override) --- */
+.dark-theme {
+  --bg-color: #0f172a; /* Slate 900 */
+  --text-color: #cbd5e1; /* Slate 300 */
+  --card-bg: #1e293b; /* Slate 800 */
+  --border-color: #334155; /* Slate 700 */
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  
+  /* 💡 브라우저 내장 폼 컨트롤(달력 팝업, 자동완성, 드롭다운 화살표, 라디오 버튼)까지 다크모드로 변경 */
+  color-scheme: dark !important;
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* 다크모드 시 body 배경색 반전 (중요: html에 적용된 클래스가 body로 전파되지 않는 버그 해결) */
+.dark-theme body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* 다크모드 하의 하위 공통 컴포넌트 색상 보정 */
+.dark-theme main, 
+.dark-theme aside, 
+.dark-theme .advanced-card, 
+.dark-theme .additional-learning,
+.dark-theme nav { /* nav 컴포넌트 배경 및 테두리선 보정 추가 */
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: 0 4px 20px -2px var(--shadow-color) !important;
+}
+
+.dark-theme h1, 
+.dark-theme h2, 
+.dark-theme h3, 
+.dark-theme h4,
+.dark-theme .brand-text-skala {
+  color: #f1f5f9 !important; /* 거의 흰색 */
+}
+
+.dark-theme p, 
+.dark-theme li,
+.dark-theme td,
+.dark-theme th {
+  color: #cbd5e1 !important;
+}
+
+.dark-theme a {
+  color: #38bdf8 !important; /* 링크는 다크모드에서 식별하기 편한 하늘색 */
+}
+
+.dark-theme a:hover {
+  color: #0ea5e9 !important;
+}
+
+/* 메뉴 바로가기 (nav) 링크 다크모드 가독성 확보 */
+.dark-theme nav a {
+  background-color: #0f172a !important;
+  color: #cbd5e1 !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme nav a:hover {
+  background: var(--primary-gradient) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+/* 폼 요소 다크모드 완벽 대응 (타입별 선택자 명시도 이슈 우회) */
+.dark-theme input[type="text"],
+.dark-theme input[type="password"],
+.dark-theme input[type="email"],
+.dark-theme input[type="tel"],
+.dark-theme input[type="url"],
+.dark-theme input[type="number"],
+.dark-theme input[type="date"],
+.dark-theme select,
+.dark-theme textarea {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* readonly(국적) 필드 다크모드 색상 보정 */
+.dark-theme input[readonly] {
+  background-color: #1e293b !important;
+  color: #64748b !important;
+  border-color: var(--border-color) !important;
+}
+
+/* 초기화(reset) 버튼 다크모드 전용 색상 적용 */
+.dark-theme input[type="reset"] {
+  background-color: var(--border-color) !important;
+  color: #cbd5e1 !important;
+}
+
+.dark-theme input[type="reset"]:hover {
+  background-color: #475569 !important;
+  color: #ffffff !important;
+}
+
+.dark-theme input::placeholder, 
+.dark-theme textarea::placeholder {
+  color: #64748b !important;
+}
+
+.dark-theme input:focus, 
+.dark-theme select:focus, 
+.dark-theme textarea:focus {
+  border-color: var(--primary-color) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(230, 0, 36, 0.15) !important;
+}
+
+/* 회원가입 폼 fieldset/legend/label 다크모드 보정 */
+.dark-theme fieldset {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme legend {
+  color: #f1f5f9 !important;
+}
+
+.dark-theme label {
+  color: #cbd5e1 !important;
+}
+
+/* 가변 시간표 컨트롤러 다크모드 보정 */
+.dark-theme .schedule-controls {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: none !important;
+}
+
+/* 시간표 테이블 다크모드 격자선 보정 */
+.dark-theme table {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme th {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme td {
+  background-color: var(--card-bg) !important;
+  color: #cbd5e1 !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme td[style*="background-color: #f8fafc"],
+.dark-theme td[style*="background-color: #f1f5f9"] {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+}
+
+.dark-theme td.holiday-cell {
+  background-color: #7f1d1d !important; /* 다크모드 대체휴일 (진빨강) */
+  color: #fca5a5 !important;
+}
+
+/* --- 가변 시간표 과목별 파스텔 컬러 정의 (Light Mode) --- */
+.course-web { background-color: #eff6ff !important; color: #1e40af !important; }
+.course-python { background-color: #f0fdf4 !important; color: #166534 !important; }
+.course-git, .course-project { background-color: #fdf2f8 !important; color: #9d174d !important; }
+.course-statistics, .course-smart-data { background-color: #fff7ed !important; color: #c2410c !important; }
+.course-prompt { background-color: #faf5ff !important; color: #6b21a8 !important; }
+.course-transformer, .course-sllm { background-color: #ecfeff !important; color: #155e75 !important; }
+.course-java, .course-msa { background-color: #f5f5f4 !important; color: #44403c !important; }
+
+/* --- 가변 시간표 과목별 다크모드 컬러 정의 (Dark Mode) --- */
+.dark-theme .course-web { background-color: #1e3a8a !important; color: #93c5fd !important; }
+.dark-theme .course-python { background-color: #14532d !important; color: #86efac !important; }
+.dark-theme .course-git, .dark-theme .course-project { background-color: #701a75 !important; color: #fbcfe8 !important; }
+.dark-theme .course-statistics, .dark-theme .course-smart-data { background-color: #7c2d12 !important; color: #ffedd5 !important; }
+.dark-theme .course-prompt { background-color: #581c87 !important; color: #e9d5ff !important; }
+.dark-theme .course-transformer, .dark-theme .course-sllm { background-color: #164e63 !important; color: #a5f3fc !important; }
+.dark-theme .course-java, .dark-theme .course-msa { background-color: #292524 !important; color: #d6d3d1 !important; }
+
+.dark-theme tbody td:not(:first-child):not([colspan]):hover {
+  background-color: #312e81 !important; /* 다크모드 호버 피드백 */
+  color: #38bdf8 !important;
+}
+
+/* 여행지 소개 (myTrip.html) 3열 그리드 섹션 및 카드 다크모드 대응 */
+.dark-theme .trip-grid-container section {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: 0 4px 20px -2px var(--shadow-color) !important;
+}
+
+.dark-theme .trip-grid-container section:hover {
+  background-color: #1e293b !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme .trip-card {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: none !important;
+}
+
+.dark-theme .trip-card:hover {
+  background-color: #1e293b !important;
+}
+
+.dark-theme .trip-date {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #94a3b8 !important;
+}
+
+
+.dark-theme div[contenteditable="true"] {
+  background-color: #0f172a !important;
+  border-color: var(--border-color) !important;
+  color: #f1f5f9 !important;
+}
+
+.dark-theme #weather-box,
+.dark-theme #weather-box .weather-metrics {
+  background-color: #0f172a !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-theme #weather-box h4,
+.dark-theme #weather-box .state {
+  color: #f1f5f9 !important;
+}
+
+.dark-theme #weather-box .coordinates,
+.dark-theme #weather-box .weather-metrics p {
+  color: #94a3b8 !important;
+}
+
+/* --- 3. 고도화 대시보드 구조 스타일 --- */
+.advanced-dashboard-section {
+  margin-top: 40px;
+  margin-bottom: 24px;
+}
+
+.advanced-dashboard-section > h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.advanced-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.advanced-card {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px -2px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.advanced-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 15.5px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* --- 4. 위젯별 상세 스타일 --- */
+
+/* [기능 1] 테마 스위처 스타일 */
+.theme-controller-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  height: 100%;
+}
+
+.theme-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.theme-row span {
+  font-weight: bold;
+  font-size: 13.5px;
+}
+
+.theme-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.theme-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.theme-btn[data-theme="sk-red"] { color: #E60024; }
+.theme-btn[data-theme="mint"] { color: #0d9488; }
+.theme-btn[data-theme="orange"] { color: #ea580c; }
+
+.theme-btn.active {
+  color: #ffffff !important;
+}
+
+.theme-toggle-btn {
+  padding: 10px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--border-color);
+}
+
+/* [기능 2] GitHub 커밋 위젯 스타일 */
+.commit-widget {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.commit-container {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.commit-card {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12.5px;
+}
+
+.commit-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.commit-author {
+  font-weight: bold;
+}
+
+.commit-msg {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.commit-msg:hover {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+.commit-footer {
+  text-align: right;
+  margin-top: 4px;
+  font-family: monospace;
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.commit-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 150px;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.commit-error, .commit-empty {
+  text-align: center;
+  color: #94a3b8;
+  padding: 40px 10px;
+  font-size: 13px;
+}
+
+.spinner-small {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #cbd5e1;
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+  display: inline-block;
+}
+
+/* [기능 3] 칸반 보드 스타일 */
+.kanban-widget {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.kanban-input-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.kanban-input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 12.5px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  outline: none;
+}
+
+.kanban-input:focus {
+  border-color: var(--primary-color);
+}
+
+.kanban-btn {
+  padding: 6px 12px;
+  background: var(--primary-gradient);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.kanban-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  flex: 1;
+}
+
+.kanban-col {
+  background-color: var(--bg-color);
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  max-height: 220px;
+}
+
+.kanban-col h4 {
+  font-size: 11.5px;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #64748b;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+}
+
+.kanban-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+}
+
+.kanban-list.drag-over {
+  background-color: rgba(226, 232, 240, 0.4);
+  border-radius: 4px;
+}
+
+body.dark-theme .kanban-list.drag-over {
+  background-color: rgba(51, 65, 85, 0.4);
+}
+
+.kanban-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 11.5px;
+  cursor: grab;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.kanban-card:active {
+  cursor: grabbing;
+}
+
+.kanban-card.dragging {
+  opacity: 0.4;
+}
+
+.card-content {
+  flex: 1;
+  word-break: break-all;
+  padding-right: 4px;
+}
+
+.card-delete-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 2px;
+  font-weight: bold;
+}
+
+.card-delete-btn:hover {
+  color: #ef4444;
+}
+
+/* 스피너 및 유틸리티 애니메이션 */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 반응형 미디어 쿼리 추가 */
+@media (max-width: 900px) {
+  .advanced-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
 
 
