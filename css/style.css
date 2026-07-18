@@ -1179,17 +1179,17 @@ div[contenteditable="true"]:focus {
 }
 
 /* 컬러 테마 세부 스키마 */
-body.theme-sk-red {
+html.theme-sk-red {
   --primary-gradient: linear-gradient(90deg, #E60024, #FF5C00);
   --primary-color: #E60024;
 }
 
-body.theme-mint {
+html.theme-mint {
   --primary-gradient: linear-gradient(90deg, #0d9488, #0ea5e9);
   --primary-color: #0d9488;
 }
 
-body.theme-orange {
+html.theme-orange {
   --primary-gradient: linear-gradient(90deg, #ea580c, #f59e0b);
   --primary-color: #ea580c;
 }
@@ -1679,8 +1679,8 @@ aside button, .nav-btn, .advanced-card h3, .theme-btn.active {
   padding: 8px;
   display: flex;
   flex-direction: column;
-  min-height: 180px;
-  max-height: 220px;
+  min-height: 300px; /* 칸반 컬럼의 최소 높이를 시원하게 확장 */
+  flex: 1;           /* 부모 카드가 늘어날 때 컬럼의 높이도 꽉 차도록 유연성 확보 */
 }
 
 .kanban-col h4 {
