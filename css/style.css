@@ -1454,7 +1454,7 @@ aside button, .nav-btn, .advanced-card h3, .theme-btn.active {
 
 .advanced-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* 2열로 변경하여 상단에 2개 위젯 배치 */
   gap: 24px;
   align-items: stretch;
 }

@@ -136,28 +136,28 @@
           <button id="refresh-commits-btn" class="kanban-btn" style="margin-top: 12px; width: 100%;">🔄 로그 갱신</button>
         </div>
       </div>
+    </div>
 
-      <!-- [기능 3] HTML5 Drag & Drop 칸반 보드 -->
-      <div class="advanced-card">
-        <h3>📋 학습용 미니 칸반 보드</h3>
-        <div class="kanban-widget">
-          <div class="kanban-input-group">
-            <input type="text" id="new-task-input" class="kanban-input" placeholder="새 태스크 입력..." maxlength="25">
-            <button id="add-task-btn" class="kanban-btn">추가</button>
+    <!-- [기능 3] HTML5 Drag & Drop 칸반 보드 (가로 100% 독립 행으로 배치) -->
+    <div class="advanced-card" style="margin-top: 24px;">
+      <h3>📋 학습용 미니 칸반 보드</h3>
+      <div class="kanban-widget">
+        <div class="kanban-input-group">
+          <input type="text" id="new-task-input" class="kanban-input" placeholder="새 태스크 입력..." maxlength="25">
+          <button id="add-task-btn" class="kanban-btn">추가</button>
+        </div>
+        <div class="kanban-columns">
+          <div class="kanban-col">
+            <h4>할 일 (To Do)</h4>
+            <div id="todo-list" class="kanban-list"></div>
           </div>
-          <div class="kanban-columns">
-            <div class="kanban-col">
-              <h4>할 일 (To Do)</h4>
-              <div id="todo-list" class="kanban-list"></div>
-            </div>
-            <div class="kanban-col">
-              <h4>진행 (Doing)</h4>
-              <div id="doing-list" class="kanban-list"></div>
-            </div>
-            <div class="kanban-col">
-              <h4>완료 (Done)</h4>
-              <div id="done-list" class="kanban-list"></div>
-            </div>
+          <div class="kanban-col">
+            <h4>진행 (Doing)</h4>
+            <div id="doing-list" class="kanban-list"></div>
+          </div>
+          <div class="kanban-col">
+            <h4>완료 (Done)</h4>
+            <div id="done-list" class="kanban-list"></div>
           </div>
         </div>
       </div>
